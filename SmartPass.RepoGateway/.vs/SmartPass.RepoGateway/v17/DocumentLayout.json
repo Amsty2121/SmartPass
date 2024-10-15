@@ -1,0 +1,564 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3279EBA9-6CE4-4352-A69F-460E463DAFE1}|SmartPass.RepoGateway\\SmartPass.RepoGateway.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.repogateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3279EBA9-6CE4-4352-A69F-460E463DAFE1}|SmartPass.RepoGateway\\SmartPass.RepoGateway.csproj|solutionrelative:smartpass.repogateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\ioc\\addservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\ioc\\addservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.domain\\ioc\\addrepositories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|solutionrelative:smartpass.domain\\ioc\\addrepositories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\implementations\\accesscardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\implementations\\accesscardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Migrations\\SmartPassContextMigrations\\20241002214634_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SmartPass.Domain\\Migrations\\SmartPassContextMigrations\\20241002214634_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.domain\\contexts\\smartpasscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|solutionrelative:smartpass.domain\\contexts\\smartpasscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3279EBA9-6CE4-4352-A69F-460E463DAFE1}|SmartPass.RepoGateway\\SmartPass.RepoGateway.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.repogateway\\extensions\\apphostextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3279EBA9-6CE4-4352-A69F-460E463DAFE1}|SmartPass.RepoGateway\\SmartPass.RepoGateway.csproj|solutionrelative:smartpass.repogateway\\extensions\\apphostextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.domain\\seed\\dataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|solutionrelative:smartpass.domain\\seed\\dataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\models\\dtos\\accesscards\\accesscardwithsessionsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\models\\dtos\\accesscards\\accesscardwithsessionsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\models\\dtos\\accesscards\\accesscardwithdeletedflagdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\models\\dtos\\accesscards\\accesscardwithdeletedflagdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3279EBA9-6CE4-4352-A69F-460E463DAFE1}|SmartPass.RepoGateway\\SmartPass.RepoGateway.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.repogateway\\controllers\\userrolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3279EBA9-6CE4-4352-A69F-460E463DAFE1}|SmartPass.RepoGateway\\SmartPass.RepoGateway.csproj|solutionrelative:smartpass.repogateway\\controllers\\userrolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\implementations\\userroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\implementations\\userroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\interfaces\\iuserroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\interfaces\\iuserroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\interfaces\\igenericcrudservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\interfaces\\igenericcrudservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3279EBA9-6CE4-4352-A69F-460E463DAFE1}|SmartPass.RepoGateway\\SmartPass.RepoGateway.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.repogateway\\controllers\\cardreadercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3279EBA9-6CE4-4352-A69F-460E463DAFE1}|SmartPass.RepoGateway\\SmartPass.RepoGateway.csproj|solutionrelative:smartpass.repogateway\\controllers\\cardreadercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.domain\\models\\entities\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|solutionrelative:smartpass.domain\\models\\entities\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.domain\\models\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|solutionrelative:smartpass.domain\\models\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.domain\\models\\entities\\cardreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|solutionrelative:smartpass.domain\\models\\entities\\cardreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.domain\\models\\entities\\accesslevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|solutionrelative:smartpass.domain\\models\\entities\\accesslevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.domain\\models\\entities\\accesscard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|solutionrelative:smartpass.domain\\models\\entities\\accesscard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\implementations\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\implementations\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.domain\\implementations\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|solutionrelative:smartpass.domain\\implementations\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\models\\dtos\\userroles\\userroledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\models\\dtos\\userroles\\userroledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\models\\dtos\\users\\userwithsessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\models\\dtos\\users\\userwithsessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\models\\dtos\\users\\userwithdeletedflagdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\models\\dtos\\users\\userwithdeletedflagdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\models\\dtos\\users\\userwithcardsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\models\\dtos\\users\\userwithcardsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\models\\dtos\\users\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\models\\dtos\\users\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\utility\\passwordutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\utility\\passwordutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\models\\dtos\\accesscards\\accesscarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\models\\dtos\\accesscards\\accesscarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.domain\\models\\entities\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB16AD6A-4A54-4113-AC6F-845DC7645B78}|SmartPass.Domain\\SmartPass.Repository.csproj|solutionrelative:smartpass.domain\\models\\entities\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\customerrors\\customerror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\customerrors\\customerror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|c:\\users\\dimasus\\desktop\\masterproj\\smartpass.repogateway\\smartpass.services\\smartpass.services.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{EDACE469-2C8D-41BE-92A8-AE112706B77B}|SmartPass.Services\\SmartPass.Services.csproj|solutionrelative:smartpass.services\\smartpass.services.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "20241002214634_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Migrations\\SmartPassContextMigrations\\20241002214634_InitialCreate.cs",
+              "RelativeDocumentMoniker": "SmartPass.Domain\\Migrations\\SmartPassContextMigrations\\20241002214634_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Migrations\\SmartPassContextMigrations\\20241002214634_InitialCreate.cs",
+              "RelativeToolTip": "SmartPass.Domain\\Migrations\\SmartPassContextMigrations\\20241002214634_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T21:46:35.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DataSeeder.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Seed\\DataSeeder.cs",
+              "RelativeDocumentMoniker": "SmartPass.Domain\\Seed\\DataSeeder.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Seed\\DataSeeder.cs",
+              "RelativeToolTip": "SmartPass.Domain\\Seed\\DataSeeder.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAuwAUAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T17:06:29.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.RepoGateway\\Program.cs",
+              "RelativeDocumentMoniker": "SmartPass.RepoGateway\\Program.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.RepoGateway\\Program.cs",
+              "RelativeToolTip": "SmartPass.RepoGateway\\Program.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAjwBYAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T17:19:06.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AddRepositories.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\IoC\\AddRepositories.cs",
+              "RelativeDocumentMoniker": "SmartPass.Domain\\IoC\\AddRepositories.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\IoC\\AddRepositories.cs",
+              "RelativeToolTip": "SmartPass.Domain\\IoC\\AddRepositories.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T19:17:52.096Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccessCardService.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Implementations\\AccessCardService.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\Implementations\\AccessCardService.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Implementations\\AccessCardService.cs",
+              "RelativeToolTip": "SmartPass.Services\\Implementations\\AccessCardService.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAwwD4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T16:48:33.579Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AddServices.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\IoC\\AddServices.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\IoC\\AddServices.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\IoC\\AddServices.cs",
+              "RelativeToolTip": "SmartPass.Services\\IoC\\AddServices.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T21:29:49.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CardReaderController.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.RepoGateway\\Controllers\\CardReaderController.cs",
+              "RelativeDocumentMoniker": "SmartPass.RepoGateway\\Controllers\\CardReaderController.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.RepoGateway\\Controllers\\CardReaderController.cs",
+              "RelativeToolTip": "SmartPass.RepoGateway\\Controllers\\CardReaderController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T21:33:13.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UserRoleController.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.RepoGateway\\Controllers\\UserRoleController.cs",
+              "RelativeDocumentMoniker": "SmartPass.RepoGateway\\Controllers\\UserRoleController.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.RepoGateway\\Controllers\\UserRoleController.cs",
+              "RelativeToolTip": "SmartPass.RepoGateway\\Controllers\\UserRoleController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBQAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T21:33:36.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AccessCardWithDeletedFlagDto.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\AccessCards\\AccessCardWithDeletedFlagDto.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\Models\\DTOs\\AccessCards\\AccessCardWithDeletedFlagDto.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\AccessCards\\AccessCardWithDeletedFlagDto.cs",
+              "RelativeToolTip": "SmartPass.Services\\Models\\DTOs\\AccessCards\\AccessCardWithDeletedFlagDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T21:40:59.13Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SmartPassContext.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Contexts\\SmartPassContext.cs",
+              "RelativeDocumentMoniker": "SmartPass.Domain\\Contexts\\SmartPassContext.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Contexts\\SmartPassContext.cs",
+              "RelativeToolTip": "SmartPass.Domain\\Contexts\\SmartPassContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T17:06:49.99Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppHostExtension.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.RepoGateway\\Extensions\\AppHostExtension.cs",
+              "RelativeDocumentMoniker": "SmartPass.RepoGateway\\Extensions\\AppHostExtension.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.RepoGateway\\Extensions\\AppHostExtension.cs",
+              "RelativeToolTip": "SmartPass.RepoGateway\\Extensions\\AppHostExtension.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAvwBwAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T21:41:58.728Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AccessCardWithSessionsDto.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\AccessCards\\AccessCardWithSessionsDto.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\Models\\DTOs\\AccessCards\\AccessCardWithSessionsDto.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\AccessCards\\AccessCardWithSessionsDto.cs",
+              "RelativeToolTip": "SmartPass.Services\\Models\\DTOs\\AccessCards\\AccessCardWithSessionsDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T21:41:30.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UserRoleService.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Implementations\\UserRoleService.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\Implementations\\UserRoleService.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Implementations\\UserRoleService.cs",
+              "RelativeToolTip": "SmartPass.Services\\Implementations\\UserRoleService.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAADgvxAAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T20:27:05.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IUserRoleService.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Interfaces\\IUserRoleService.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\Interfaces\\IUserRoleService.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Interfaces\\IUserRoleService.cs",
+              "RelativeToolTip": "SmartPass.Services\\Interfaces\\IUserRoleService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T20:20:46.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IGenericCRUDService.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Interfaces\\IGenericCRUDService.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\Interfaces\\IGenericCRUDService.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Interfaces\\IGenericCRUDService.cs",
+              "RelativeToolTip": "SmartPass.Services\\Interfaces\\IGenericCRUDService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T20:21:09.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "UserRole.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Models\\Entities\\UserRole.cs",
+              "RelativeDocumentMoniker": "SmartPass.Domain\\Models\\Entities\\UserRole.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Models\\Entities\\UserRole.cs",
+              "RelativeToolTip": "SmartPass.Domain\\Models\\Entities\\UserRole.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T17:08:35.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Models\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "SmartPass.Domain\\Models\\Entities\\User.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Models\\Entities\\User.cs",
+              "RelativeToolTip": "SmartPass.Domain\\Models\\Entities\\User.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAcwCEAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T17:07:18.785Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AccessCard.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Models\\Entities\\AccessCard.cs",
+              "RelativeDocumentMoniker": "SmartPass.Domain\\Models\\Entities\\AccessCard.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Models\\Entities\\AccessCard.cs",
+              "RelativeToolTip": "SmartPass.Domain\\Models\\Entities\\AccessCard.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T19:18:03.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AccessLevel.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Models\\Entities\\AccessLevel.cs",
+              "RelativeDocumentMoniker": "SmartPass.Domain\\Models\\Entities\\AccessLevel.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Models\\Entities\\AccessLevel.cs",
+              "RelativeToolTip": "SmartPass.Domain\\Models\\Entities\\AccessLevel.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBAAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T19:18:11.911Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Implementations\\UserService.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\Implementations\\UserService.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Implementations\\UserService.cs",
+              "RelativeToolTip": "SmartPass.Services\\Implementations\\UserService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACkAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T16:46:59.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "CardReader.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Models\\Entities\\CardReader.cs",
+              "RelativeDocumentMoniker": "SmartPass.Domain\\Models\\Entities\\CardReader.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Models\\Entities\\CardReader.cs",
+              "RelativeToolTip": "SmartPass.Domain\\Models\\Entities\\CardReader.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T19:18:53.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Implementations\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "SmartPass.Domain\\Implementations\\GenericRepository.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Implementations\\GenericRepository.cs",
+              "RelativeToolTip": "SmartPass.Domain\\Implementations\\GenericRepository.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAkwBwAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T19:17:41.656Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "UserRoleDto.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\UserRoles\\UserRoleDto.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\Models\\DTOs\\UserRoles\\UserRoleDto.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\UserRoles\\UserRoleDto.cs",
+              "RelativeToolTip": "SmartPass.Services\\Models\\DTOs\\UserRoles\\UserRoleDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T20:23:10.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "UserWithSessionDto.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\Users\\UserWithSessionDto.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\Models\\DTOs\\Users\\UserWithSessionDto.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\Users\\UserWithSessionDto.cs",
+              "RelativeToolTip": "SmartPass.Services\\Models\\DTOs\\Users\\UserWithSessionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T20:26:13.406Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "UserWithDeletedFlagDto.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\Users\\UserWithDeletedFlagDto.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\Models\\DTOs\\Users\\UserWithDeletedFlagDto.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\Users\\UserWithDeletedFlagDto.cs",
+              "RelativeToolTip": "SmartPass.Services\\Models\\DTOs\\Users\\UserWithDeletedFlagDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T20:24:22.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "UserWithCardsDto.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\Users\\UserWithCardsDto.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\Models\\DTOs\\Users\\UserWithCardsDto.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\Users\\UserWithCardsDto.cs",
+              "RelativeToolTip": "SmartPass.Services\\Models\\DTOs\\Users\\UserWithCardsDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T20:23:48.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "PasswordUtility.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Utility\\PasswordUtility.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\Utility\\PasswordUtility.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Utility\\PasswordUtility.cs",
+              "RelativeToolTip": "SmartPass.Services\\Utility\\PasswordUtility.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T19:27:09.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\Users\\UserDto.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\Models\\DTOs\\Users\\UserDto.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\Users\\UserDto.cs",
+              "RelativeToolTip": "SmartPass.Services\\Models\\DTOs\\Users\\UserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T17:05:29.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "AccessCardDto.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\AccessCards\\AccessCardDto.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\Models\\DTOs\\AccessCards\\AccessCardDto.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\Models\\DTOs\\AccessCards\\AccessCardDto.cs",
+              "RelativeToolTip": "SmartPass.Services\\Models\\DTOs\\AccessCards\\AccessCardDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T19:27:15.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Session.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Models\\Entities\\Session.cs",
+              "RelativeDocumentMoniker": "SmartPass.Domain\\Models\\Entities\\Session.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Domain\\Models\\Entities\\Session.cs",
+              "RelativeToolTip": "SmartPass.Domain\\Models\\Entities\\Session.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAA5wAkAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T17:07:18.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "SmartPass.Services",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\SmartPass.Services.csproj",
+              "RelativeDocumentMoniker": "SmartPass.Services\\SmartPass.Services.csproj",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\SmartPass.Services.csproj",
+              "RelativeToolTip": "SmartPass.Services\\SmartPass.Services.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-10-02T16:53:53.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "CustomError.cs",
+              "DocumentMoniker": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\CustomErrors\\CustomError.cs",
+              "RelativeDocumentMoniker": "SmartPass.Services\\CustomErrors\\CustomError.cs",
+              "ToolTip": "C:\\Users\\dimASUS\\Desktop\\MasterProj\\SmartPass.RepoGateway\\SmartPass.Services\\CustomErrors\\CustomError.cs",
+              "RelativeToolTip": "SmartPass.Services\\CustomErrors\\CustomError.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T16:54:13.422Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

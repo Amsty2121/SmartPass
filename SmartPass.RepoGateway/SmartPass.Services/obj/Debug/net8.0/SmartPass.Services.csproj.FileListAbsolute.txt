@@ -1,0 +1,15 @@
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\bin\Debug\net8.0\SmartPass.Services.deps.json
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\bin\Debug\net8.0\SmartPass.Services.dll
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\bin\Debug\net8.0\SmartPass.Services.pdb
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\bin\Debug\net8.0\SmartPass.Repository.dll
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\bin\Debug\net8.0\SmartPass.Repository.pdb
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\obj\Debug\net8.0\SmartPass.Services.csproj.AssemblyReference.cache
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\obj\Debug\net8.0\SmartPass.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\obj\Debug\net8.0\SmartPass.Services.AssemblyInfoInputs.cache
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\obj\Debug\net8.0\SmartPass.Services.AssemblyInfo.cs
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\obj\Debug\net8.0\SmartPass.Services.csproj.CoreCompileInputs.cache
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\obj\Debug\net8.0\SmartPas.0DE90F5D.Up2Date
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\obj\Debug\net8.0\SmartPass.Services.dll
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\obj\Debug\net8.0\refint\SmartPass.Services.dll
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\obj\Debug\net8.0\SmartPass.Services.pdb
+C:\Users\dimASUS\Desktop\MasterProj\SmartPass.RepoGateway\SmartPass.Services\obj\Debug\net8.0\ref\SmartPass.Services.dll
