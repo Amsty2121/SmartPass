@@ -99,7 +99,6 @@ namespace SmartPass.Services.Implementations
             var result = await UserRoleRepo.Update(role, ct);
 
             return result > 0 ? new UserRoleDto(role) : new Result<UserRoleDto>(new SqlTypeException($"DbException: Update failed - Role with id {entity.Id}"));
-
         }
     }
 }

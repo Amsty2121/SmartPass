@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using SmartPass.Repository.Models.EntityInterfaces;
+﻿using SmartPass.Repository.Models.EntityInterfaces;
 using System.ComponentModel.DataAnnotations;
 
 namespace SmartPass.Repository.Models.Entities
@@ -11,10 +10,14 @@ namespace SmartPass.Repository.Models.Entities
         public Guid Id { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(50)]
         public string UserName { get; set; }
 
         [Required]
+        [MaxLength(50)]
+        [MinLength(8)]
+        public string Password { get; set; }
+
         [MaxLength(100)]
         public string Department { get; set; }
 

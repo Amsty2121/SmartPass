@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using SmartPass.Repository.Models.EntityInterfaces;
+﻿using SmartPass.Repository.Models.EntityInterfaces;
 using System.ComponentModel.DataAnnotations;
 
 namespace SmartPass.Repository.Models.Entities
