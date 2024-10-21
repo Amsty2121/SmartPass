@@ -1,4 +1,5 @@
 ﻿using SmartPass.Repository.Models.Entities;
+
 namespace SmartPass.Services.Models.DTOs.UserRoles
 {
     public class UserRoleDto

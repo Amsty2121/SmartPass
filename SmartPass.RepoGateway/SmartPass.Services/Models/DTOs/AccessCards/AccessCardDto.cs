@@ -19,7 +19,7 @@ namespace SmartPass.Services.Models.DTOs.AccessCards
 
         public Guid Id { get; set; }
 
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
         public string UserName { get; set; }
 
         public CardType CardType { get; set; }

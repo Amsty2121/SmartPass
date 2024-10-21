@@ -14,11 +14,9 @@ namespace SmartPass.Repository.Models.Entities
         [MaxLength(50)]
         public string Name { get; set; }
 
-        [Required]
-        public AccessLevels accessLvl { get; set; }
-
         [MaxLength(500)]
         public string? Description { get; set; }
+
 
 
         [Required]
@@ -33,7 +31,5 @@ namespace SmartPass.Repository.Models.Entities
 
         public ICollection<AccessCard> AccessCards { get; set; }
         public ICollection<Zone> Zones { get; set; }
-
-
     }
 }

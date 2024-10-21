@@ -17,9 +17,10 @@ namespace SmartPass.Repository.Models.Entities
         public string? Description { get; set; }
 
 
+
         [Required]
         public DateTime CreateUtcDate { get; set; }
-        public DateTime UpdateUtcDate { get; set; }
+        public DateTime? UpdateUtcDate { get; set; }
 
 
         [Required]
@@ -28,6 +29,5 @@ namespace SmartPass.Repository.Models.Entities
 
 
         public ICollection<User> Users { get; set; }
-
     }
 }

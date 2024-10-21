@@ -13,7 +13,8 @@ namespace SmartPass.Repository.Models.Entities
         [Required]
         public Guid AccessCardId { get; set; }
 
-        public Guid DeviceId { get; set; }
+        [Required]
+        public Guid CardReaderId { get; set; }
 
 
         [Required]

@@ -10,22 +10,22 @@ namespace SmartPass.Repository.Models.Entities
         [Key]
         public Guid Id { get; set; }
 
-        [Required]
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
 
         [Required]
         public CardType CardType { get; set; }
 
         [Required]
-        public Guid AccessLevelId { get; set; }
+        public CardState CardState { get; set; }
 
         [Required]
-        public string AccessKey { get; set; }
+        public Guid AccessLevelId { get; set; }
 
         [MaxLength(500)]
         public string? Description { get; set; }
 
         public DateTime? LastUsingUtcDate { get; set; }
+
 
 
         [Required]

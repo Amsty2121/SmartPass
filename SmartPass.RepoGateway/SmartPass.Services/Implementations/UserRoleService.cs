@@ -3,7 +3,9 @@ using LanguageExt.Common;
 using SmartPass.Repository.Contexts;
 using SmartPass.Repository.Interfaces;
 using SmartPass.Repository.Models.Entities;
+using SmartPass.Repository.Models.Enums;
 using SmartPass.Services.Interfaces;
+using SmartPass.Services.Models.DTOs.AccessLevels;
 using SmartPass.Services.Models.DTOs.UserRoles;
 using System.Data;
 using System.Data.SqlTypes;
@@ -26,21 +28,27 @@ namespace SmartPass.Services.Implementations
             return !roles.Any() ? Enumerable.Empty<UserRoleDto>() : roles.Select(r => new UserRoleDto(r));
         }
 
-        public async Task<Result<UserRoleDto>> Create(UserRole entity, CancellationToken ct = default)
+        public async Task<Result<UserRoleDto>> Create(AddUserRoleDto addDto, CancellationToken ct = default)
         {
-            var role = await UserRoleRepo.GetWhere(r => r.Name.Equals(entity.Name), ct);
+            var roles = await UserRoleRepo.GetWhere(r => r.Name.Equals(addDto.Name), ct);
 
-            if (role is null || !role.Any())
+            if (!roles.Any())
             { 
-                return new Result<UserRoleDto>(new DuplicateNameException($"DuplicateException: Insertion failed - Role {entity.Name} already exists"));
+                return new Result<UserRoleDto>(new DuplicateNameException($"DuplicateException: Insertion failed - Role {addDto.Name} already exists"));
             }
 
-            entity.Id = Guid.NewGuid();
-            entity.CreateUtcDate = DateTime.UtcNow;
-            entity.IsDeleted = false;
-            var result = await UserRoleRepo.Add(entity, ct);
+            var role = new UserRole
+            {
+                Id = Guid.NewGuid(),
+                Name = addDto.Name,
+                Description = addDto.Description,
+                CreateUtcDate = DateTime.UtcNow,
+                IsDeleted = false,
+            };
 
-            return result > 0 ? new UserRoleDto(entity) : new Result<UserRoleDto>(new SqlTypeException($"DbException:Insertion failed - Role {entity.Name}"));
+            var result = await UserRoleRepo.Add(role, ct);
+
+            return result > 0 ? new UserRoleDto(role) : new Result<UserRoleDto>(new SqlTypeException($"DbException:Insertion failed - Role {addDto.Name}"));
         }
 
         public async Task<Result<UserRoleDto>> Delete(Guid id, CancellationToken ct = default)
@@ -73,32 +81,43 @@ namespace SmartPass.Services.Implementations
             return result > 0 ? new UserRoleDto(role) : new Result<UserRoleDto>(new SqlTypeException($"DbException: Soft Deletion failed - Role with id {id}"));
         }
 
-        public async Task<Result<UserRoleDto>> Update(UserRole entity, CancellationToken ct = default)
+        public async Task<Result<UserRoleDto>> Update(UpdateUserRoleDto updateDto, CancellationToken ct = default)
         {
-            var role = await UserRoleRepo.GetById(entity.Id, ct);
+            var role = await UserRoleRepo.GetById(updateDto.Id, ct);
 
             if (role is null)
             {
-                return new Result<UserRoleDto>(new KeyNotFoundException($"NotFoundException: Update failed - Not found Role with id {entity.Id}")); ;
+                return new Result<UserRoleDto>(new KeyNotFoundException($"NotFoundException: Update failed - Not found Role with id {updateDto.Id}")); ;
             }
-
             var toChange = false;
 
-            if (entity.Description is not null)
+            if (!string.IsNullOrWhiteSpace(updateDto.Name) && !updateDto.Name.Equals(role.Name))
             {
-                role.Description = entity.Description;
-                role.UpdateUtcDate = DateTime.UtcNow;
+                var roleWithName = (await UserRoleRepo.GetWhere(x => x.Name.Equals(updateDto.Name), ct)).FirstOrDefault();
+                if (roleWithName is null)
+                {
+                    return new Result<UserRoleDto>(new ArgumentException($"DbException: Update failed - The Role with the name {updateDto.Name} already exists"));
+                }
+
+                role.Name = updateDto.Name;
+                toChange = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(updateDto.Description))
+            {
+                role.Description = updateDto.Description;
                 toChange = true;
             }
 
             if (!toChange) 
             { 
-                return new Result<UserRoleDto>(new ArgumentException($"DbException: Update failed - nothing to delete for Role with id {entity.Id}"));
+                return new Result<UserRoleDto>(new ArgumentException($"DbException: Update failed - Nothing to update for Role with id {updateDto.Id}"));
             }
 
+            role.UpdateUtcDate = DateTime.UtcNow;
             var result = await UserRoleRepo.Update(role, ct);
 
-            return result > 0 ? new UserRoleDto(role) : new Result<UserRoleDto>(new SqlTypeException($"DbException: Update failed - Role with id {entity.Id}"));
+            return result > 0 ? new UserRoleDto(role) : new Result<UserRoleDto>(new SqlTypeException($"DbException: Update failed - Role with id {updateDto.Id}"));
         }
     }
 }

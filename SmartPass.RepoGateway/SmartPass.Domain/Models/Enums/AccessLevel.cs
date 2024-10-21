@@ -1,6 +1,6 @@
 ﻿namespace SmartPass.Repository.Models.Enums
 {
-    public enum AccessLevels
+    public enum AccessLevel
     {
         //BlockedAccess - no access for all, only for God
         Blocked = -1,

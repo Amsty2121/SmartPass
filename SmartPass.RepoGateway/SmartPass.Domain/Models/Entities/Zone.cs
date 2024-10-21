@@ -1,5 +1,4 @@
 ﻿using SmartPass.Repository.Models.EntityInterfaces;
-using SmartPass.Repository.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace SmartPass.Repository.Models.Entities

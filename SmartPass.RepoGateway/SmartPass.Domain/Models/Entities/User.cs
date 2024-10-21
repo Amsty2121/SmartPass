@@ -19,14 +19,17 @@ namespace SmartPass.Repository.Models.Entities
         public string Password { get; set; }
 
         [MaxLength(100)]
-        public string Department { get; set; }
+        public string? Department { get; set; }
 
         [MaxLength(500)]
         public string? Description { get; set; }
 
+
+
         [Required]
         public DateTime CreateUtcDate { get; set; }
-        public DateTime UpdateUtcDate { get; set; }
+        public DateTime? UpdateUtcDate { get; set; }
+
 
         [Required]
         public bool IsDeleted { get; set; }

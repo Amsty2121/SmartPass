@@ -32,7 +32,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 //Apply migrations
-//Add-Migration InitialCreate -Context SessionContext -OutputDir Migrations\SessionContextMigrations
+//Add-Migration InitialCreate -Context SmartPassContext -OutputDir Migrations\SmartPassContextContextMigrations
 using (var scope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
 {
     //scope.ServiceProvider.GetRequiredService<IdentityContext>().Database.Migrate();

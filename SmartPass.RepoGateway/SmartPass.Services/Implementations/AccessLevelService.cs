@@ -26,21 +26,27 @@ namespace SmartPass.Services.Implementations
             return !accessLevels.Any() ? Enumerable.Empty<AccessLevelDto>() : accessLevels.Select(r => new AccessLevelDto(r));
         }
 
-        public async Task<Result<AccessLevelDto>> Create(AccessLevel entity, CancellationToken ct = default)
+        public async Task<Result<AccessLevelDto>> Create(AddAccessLevelDto addDto, CancellationToken ct = default)
         {
-            var accessLevel = await AccessLevelRepo.GetWhere(r => r.Name.Equals(entity.Name), ct);
+            var accessLevels = await AccessLevelRepo.GetWhere(r => r.Name.Equals(addDto.Name), ct);
 
-            if (accessLevel is null || !accessLevel.Any())
+            if (!accessLevels.Any())
             {
-                return new Result<AccessLevelDto>(new DuplicateNameException($"DuplicateException: Insertion failed - AccessLevel {entity.Name} already exists"));
+                return new Result<AccessLevelDto>(new DuplicateNameException($"DuplicateException: Insertion failed - AccessLevel {addDto.Name} already exists"));
             }
 
-            entity.Id = Guid.NewGuid();
-            entity.CreateUtcDate = DateTime.UtcNow;
-            entity.IsDeleted = false;
-            var result = await AccessLevelRepo.Add(entity, ct);
+            var accessLevel = new AccessLevel
+            {
+                Id = Guid.NewGuid(),
+                Name = addDto.Name,
+                Description = addDto.Description,
+                CreateUtcDate = DateTime.UtcNow,
+                IsDeleted = false
+            };
 
-            return result > 0 ? new AccessLevelDto(entity) : new Result<AccessLevelDto>(new SqlTypeException($"DbException:Insertion failed - AccessLevel {entity.Name}"));
+            var result = await AccessLevelRepo.Add(accessLevel, ct);
+
+            return result > 0 ? new AccessLevelDto(accessLevel) : new Result<AccessLevelDto>(new SqlTypeException($"DbException:Insertion failed - AccessLevel {addDto.Name}"));
         }
 
         public async Task<Result<AccessLevelDto>> Delete(Guid id, CancellationToken ct = default)
@@ -73,32 +79,44 @@ namespace SmartPass.Services.Implementations
             return result > 0 ? new AccessLevelDto(accessLevel) : new Result<AccessLevelDto>(new SqlTypeException($"DbException: Soft Deletion failed - AccessLevel with id {id}"));
         }
 
-        public async Task<Result<AccessLevelDto>> Update(AccessLevel entity, CancellationToken ct = default)
+        public async Task<Result<AccessLevelDto>> Update(UpdateAccessLevelDto updateDto, CancellationToken ct = default)
         {
-            var accessLevel = await AccessLevelRepo.GetById(entity.Id, ct);
+            var accessLevel = await AccessLevelRepo.GetById(updateDto.Id, ct);
 
             if (accessLevel is null)
             {
-                return new Result<AccessLevelDto>(new KeyNotFoundException($"NotFoundException: Update failed - Not found AccessLevel with id {entity.Id}")); ;
+                return new Result<AccessLevelDto>(new KeyNotFoundException($"NotFoundException: Update failed - Not found AccessLevel with id {updateDto.Id}")); ;
             }
 
             var toChange = false;
 
-            if (entity.Description is not null)
+            if (!string.IsNullOrWhiteSpace(updateDto.Name) && !updateDto.Name.Equals(accessLevel.Name))
             {
-                accessLevel.Description = entity.Description;
+                var accessLevelWithName = (await AccessLevelRepo.GetWhere(x => x.Name.Equals(updateDto.Name), ct)).FirstOrDefault();
+                if (accessLevelWithName is null)
+                {
+                    return new Result<AccessLevelDto>(new ArgumentException($"DbException: Update failed - The AccessLevel with the name {updateDto.Name} already exists"));
+                }
+                    
+                accessLevel.Name = updateDto.Name;
+                toChange = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(updateDto.Description))
+            {
+                accessLevel.Description = updateDto.Description;
                 toChange = true;
             }
 
             if (!toChange)
             {
-                return new Result<AccessLevelDto>(new ArgumentException($"DbException: Update failed - nothing to update for AccessLevel with id {entity.Id}"));
+                return new Result<AccessLevelDto>(new ArgumentException($"DbException: Update failed - Nothing to update for AccessLevel with id {updateDto.Id}"));
             }
 
             accessLevel.UpdateUtcDate = DateTime.UtcNow;
             var result = await AccessLevelRepo.Update(accessLevel, ct);
 
-            return result > 0 ? new AccessLevelDto(accessLevel) : new Result<AccessLevelDto>(new SqlTypeException($"DbException: Update failed - AccessLevel with id {entity.Id}"));
+            return result > 0 ? new AccessLevelDto(accessLevel) : new Result<AccessLevelDto>(new SqlTypeException($"DbException: Update failed - AccessLevel with id {updateDto.Id}"));
         }
     }
 }

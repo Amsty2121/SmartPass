@@ -26,15 +26,14 @@ namespace SmartPass.Services.Implementations
             return !accessCards.Any() ? Enumerable.Empty<AccessCardDto>() : accessCards.Select(ac => new AccessCardDto(ac));
         }
 
-        public async Task<Result<AccessCardDto>> Create(AccessCard entity, CancellationToken ct = default)
+        public async Task<Result<AccessCardDto>> Create(AddAccessCardDto entity, CancellationToken ct = default)
         {
             throw new NotImplementedException();
-            /*var user = 
+        }
 
-            var accessCards = await AccessCardRepo.
-            entity.Id = Guid.NewGuid();
-            var result = await AccessCardRepo.Add(entity, ct);*/
-            
+        public async Task<Result<AccessCardDto>> Update(UpdateAccessCardDto entity, CancellationToken ct = default)
+        {
+            throw new NotImplementedException();
         }
 
         public Task<Result<AccessCardDto>> Delete(Guid id, CancellationToken ct = default)
@@ -42,25 +41,17 @@ namespace SmartPass.Services.Implementations
             throw new NotImplementedException();
         }
 
-        
-        public Task<IEnumerable<AccessCardWithDeletedFlagDto>> GetAccessCardsWithDeletedFlag(CancellationToken ct = default)
+        public Task<Result<AccessCardDto>> DeleteSoft(Guid id, CancellationToken ct = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Option<AccessCardWithSessionsDto>> GetAccessCardWithSessions(CancellationToken ct = default)
+        public Task<Result<AccessCardDto>> Create(AccessCard entity, CancellationToken ct = default)
         {
             throw new NotImplementedException();
         }
-
-        
 
         public Task<Result<AccessCardDto>> Update(AccessCard entity, CancellationToken ct = default)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Result<AccessCardDto>> DeleteSoft(Guid id, CancellationToken ct = default)
         {
             throw new NotImplementedException();
         }
