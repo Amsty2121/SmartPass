@@ -9,12 +9,10 @@ using SmartPass.Services.Models.DTOs.AccessCards;
 
 namespace SmartPass.Services.Implementations
 {
-    public class AccessCardService(IGenericRepository<SmartPassContext, AccessCard> accessCardRepo,
-                                   UserManager<User> userRepository) : IAccessCardService
+    public class AccessCardService(IGenericRepository<SmartPassContext, AccessCard> accessCardRepo) : IAccessCardService
     {
         private IGenericRepository<SmartPassContext, AccessCard> AccessCardRepo { get; } = accessCardRepo;
-        public UserManager<User> UserRepository { get; } = userRepository;
-
+        
         public async Task<Option<AccessCardDto>> Get(Guid id, CancellationToken ct = default)
         {
             var accessCard = await AccessCardRepo.GetByIdWithInclude(id, ct, ac => ac.User);
@@ -26,12 +24,12 @@ namespace SmartPass.Services.Implementations
             return !accessCards.Any() ? Enumerable.Empty<AccessCardDto>() : accessCards.Select(ac => new AccessCardDto(ac));
         }
 
-        public async Task<Result<AccessCardDto>> Create(AddAccessCardDto entity, CancellationToken ct = default)
+        public Task<Result<AccessCardDto>> Create(AddAccessCardDto addDto, CancellationToken ct = default)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Result<AccessCardDto>> Update(UpdateAccessCardDto entity, CancellationToken ct = default)
+        public Task<Result<AccessCardDto>> Update(UpdateAccessCardDto updateDto, CancellationToken ct = default)
         {
             throw new NotImplementedException();
         }
@@ -42,16 +40,6 @@ namespace SmartPass.Services.Implementations
         }
 
         public Task<Result<AccessCardDto>> DeleteSoft(Guid id, CancellationToken ct = default)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Result<AccessCardDto>> Create(AccessCard entity, CancellationToken ct = default)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Result<AccessCardDto>> Update(AccessCard entity, CancellationToken ct = default)
         {
             throw new NotImplementedException();
         }

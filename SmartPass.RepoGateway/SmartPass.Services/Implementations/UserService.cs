@@ -1,6 +1,5 @@
 ﻿using LanguageExt;
 using LanguageExt.Common;
-using LanguageExt.Pipes;
 using SmartPass.Repository.Contexts;
 using SmartPass.Repository.Interfaces;
 using SmartPass.Repository.Models.Entities;

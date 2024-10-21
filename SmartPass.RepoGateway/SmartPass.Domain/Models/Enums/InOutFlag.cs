@@ -2,6 +2,7 @@
 {
     public enum InOutFlag
     {
+        None,
         In,
         Out
     }

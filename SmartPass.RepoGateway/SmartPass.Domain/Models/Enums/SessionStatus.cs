@@ -2,6 +2,7 @@
 {
     public enum SessionStatus
     {
+        None,
         Succeeded,
         Failed
     }

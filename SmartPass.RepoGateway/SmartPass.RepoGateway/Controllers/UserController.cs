@@ -1,22 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmartPass.Services.Interfaces;
-using SmartPass.Services.Models.DTOs.UserRoles;
+using SmartPass.Services.Models.DTOs.Users;
 
 namespace SmartPass.RepoGateway.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserRoleController(IUserRoleService userRoleService) : ControllerBase
+    public class UserController(IUserService userService) : ControllerBase
     {
-        private IUserRoleService UserRoleService { get; } = userRoleService;
+        private IUserService UserService { get; } = userService;
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] Guid id, CancellationToken ct = default)
         {
             try
             {
-                var result = await UserRoleService.Get(id, ct);
-
+                var result = await UserService.Get(id, ct);
                 return result.Match<IActionResult>(
                     Some: value => Ok(value),
                     None: () => NotFound()
@@ -33,8 +32,8 @@ namespace SmartPass.RepoGateway.Controllers
         {
             try
             {
-                var roles = await UserRoleService.GetAll(ct);
-                return Ok(roles);
+                var users = await UserService.GetAll(ct);
+                return Ok(users);
             }
             catch (Exception ex)
             {
@@ -43,11 +42,11 @@ namespace SmartPass.RepoGateway.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] AddUserRoleDto addDto, CancellationToken ct = default)
+        public async Task<IActionResult> Create([FromBody] AddUserDto addDto, CancellationToken ct = default)
         {
             try
             {
-                var result = await UserRoleService.Create(addDto, ct);
+                var result = await UserService.Create(addDto, ct);
                 return result.Match<IActionResult>(
                     Succ: value => Ok(value),
                     Fail: ex => BadRequest(ex.Message)
@@ -64,7 +63,7 @@ namespace SmartPass.RepoGateway.Controllers
         {
             try
             {
-                var result = await UserRoleService.Delete(id, ct);
+                var result = await UserService.Delete(id, ct);
                 return result.Match<IActionResult>(
                     Succ: value => Ok(value),
                     Fail: ex => BadRequest(ex.Message)
@@ -81,7 +80,7 @@ namespace SmartPass.RepoGateway.Controllers
         {
             try
             {
-                var result = await UserRoleService.DeleteSoft(id, ct);
+                var result = await UserService.DeleteSoft(id, ct);
                 return result.Match<IActionResult>(
                     Succ: value => Ok(value),
                     Fail: ex => BadRequest(ex.Message)
@@ -93,12 +92,12 @@ namespace SmartPass.RepoGateway.Controllers
             }
         }
 
-        [HttpPatch()]
-        public async Task<IActionResult> Update([FromBody] UpdateUserRoleDto updateDto, CancellationToken ct = default)
+        [HttpPatch]
+        public async Task<IActionResult> Update([FromBody] UpdateUserDto updateDto, CancellationToken ct = default)
         {
             try
             {
-                var result = await UserRoleService.Update(updateDto, ct);
+                var result = await UserService.Update(updateDto, ct);
                 return result.Match<IActionResult>(
                     Succ: value => Ok(value),
                     Fail: ex => BadRequest(ex.Message)

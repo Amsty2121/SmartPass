@@ -7,6 +7,8 @@ using SmartPass.Services.Interfaces;
 using SmartPass.Services.Models.DTOs.Zones;
 using System.Data.SqlTypes;
 using System.Data;
+using SmartPass.Services.Models.DTOs.AccessLevels;
+using SmartPass.Repository.Models.Enums;
 
 namespace SmartPass.Services.Implementations
 {
@@ -14,21 +16,28 @@ namespace SmartPass.Services.Implementations
     {
         public IGenericRepository<SmartPassContext, Zone> ZoneRepo { get; } = zoneRepo;
 
-        public async Task<Result<ZoneDto>> Create(Zone entity, CancellationToken ct = default)
+        public async Task<Result<ZoneDto>> Create(AddZoneDto addDto, CancellationToken ct = default)
         {
-            var zone = await ZoneRepo.GetWhere(r => r.Name.Equals(entity.Name), ct);
+            var zones = await ZoneRepo.GetWhere(r => r.Name.Equals(addDto.Name), ct);
 
-            if (zone is null || !zone.Any())
+            if (zones is null || !zones.Any())
             {
-                return new Result<ZoneDto>(new DuplicateNameException($"DuplicateException: Insertion failed - Zone {entity.Name} already exists"));
+                return new Result<ZoneDto>(new DuplicateNameException($"DuplicateException: Insertion failed - Zone {addDto.Name} already exists"));
             }
 
-            entity.Id = Guid.NewGuid();
-            entity.CreateUtcDate = DateTime.UtcNow;
-            entity.IsDeleted = false;
-            var result = await ZoneRepo.Add(entity, ct);
+            var zone = new Zone
+            {
+                Id = Guid.NewGuid(),
+                Name = addDto.Name,
+                Description = addDto.Description,
+                AccessLevelId = addDto.AccessLevelId,
+                CreateUtcDate = DateTime.UtcNow,
+                IsDeleted = false
+            };
 
-            return result > 0 ? new ZoneDto(entity) : new Result<ZoneDto>(new SqlTypeException($"DbException:Insertion failed - Zone {entity.Name}"));
+            var result = await ZoneRepo.Add(zone, ct);
+
+            return result > 0 ? new ZoneDto(zone) : new Result<ZoneDto>(new SqlTypeException($"DbException:Insertion failed - Zone {addDto.Name}"));
         }
 
         public async Task<Result<ZoneDto>> Delete(Guid id, CancellationToken ct = default)
@@ -73,32 +82,32 @@ namespace SmartPass.Services.Implementations
             return !accessCards.Any() ? Enumerable.Empty<ZoneDto>() : accessCards.Select(ac => new ZoneDto(ac));
         }
 
-        public async Task<Result<ZoneDto>> Update(Zone entity, CancellationToken ct = default)
+        public async Task<Result<ZoneDto>> Update(UpdateZoneDto updateDto, CancellationToken ct = default)
         {
-            var zone = await ZoneRepo.GetById(entity.Id, ct);
+            var zone = await ZoneRepo.GetById(updateDto.Id, ct);
 
             if (zone is null)
             {
-                return new Result<ZoneDto>(new KeyNotFoundException($"NotFoundException: Update failed - Not found Zone with id {entity.Id}")); ;
+                return new Result<ZoneDto>(new KeyNotFoundException($"NotFoundException: Update failed - Not found Zone with id {updateDto.Id}")); ;
             }
 
             var toChange = false;
 
-            if (entity.Description is not null)
+            if (updateDto.Description is not null)
             {
-                zone.Description = entity.Description;
+                zone.Description = updateDto.Description;
                 zone.UpdateUtcDate = DateTime.UtcNow;
                 toChange = true;
             }
 
             if (!toChange)
             {
-                return new Result<ZoneDto>(new ArgumentException($"DbException: Update failed - nothing to update for Zone with id {entity.Id}"));
+                return new Result<ZoneDto>(new ArgumentException($"DbException: Update failed - nothing to update for Zone with id {updateDto.Id}"));
             }
 
             var result = await ZoneRepo.Update(zone, ct);
 
-            return result > 0 ? new ZoneDto(zone) : new Result<ZoneDto>(new SqlTypeException($"DbException: Update failed - Zone with id {entity.Id}"));
+            return result > 0 ? new ZoneDto(zone) : new Result<ZoneDto>(new SqlTypeException($"DbException: Update failed - Zone with id {updateDto.Id}"));
 
         }
     }

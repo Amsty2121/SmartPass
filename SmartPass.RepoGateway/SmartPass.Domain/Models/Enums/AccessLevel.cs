@@ -2,6 +2,7 @@
 {
     public enum AccessLevel
     {
+        None,
         //BlockedAccess - no access for all, only for God
         Blocked = -1,
         //Guest - access only at guest area 

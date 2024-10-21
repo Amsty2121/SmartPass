@@ -2,6 +2,7 @@
 {
     public enum RoleValue
     {
+        None,
         PhoneUser,
         Admin,
         Supervizer
