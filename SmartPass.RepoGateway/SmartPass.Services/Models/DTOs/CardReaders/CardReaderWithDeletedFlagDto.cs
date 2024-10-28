@@ -1,6 +1,6 @@
 ﻿using SmartPass.Repository.Models.EntityInterfaces;
 
-namespace SmartPass.Services.Models.DTOs.Devices
+namespace SmartPass.Services.Models.DTOs.CardReaders
 {
     public class CardReaderWithDeletedFlagDto : CardReaderDto
     {

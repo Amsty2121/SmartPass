@@ -14,7 +14,7 @@ namespace Application.IoC
             appService.AddScoped(typeof(IAccessCardService), typeof(AccessCardService));
             appService.AddScoped(typeof(ISessionService), typeof(SessionService));
             appService.AddScoped(typeof(IZoneService), typeof(ZoneService));
-            appService.AddScoped(typeof(ICardReaderService), typeof(ICardReaderService));
+            appService.AddScoped(typeof(ICardReaderService), typeof(CardReaderService));
 
             return appService;
         }

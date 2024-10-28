@@ -2,7 +2,7 @@
 using SmartPass.Repository.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace SmartPass.Services.Models.DTOs.Devices
+namespace SmartPass.Services.Models.DTOs.CardReaders
 {
     public class CardReaderDto
     {

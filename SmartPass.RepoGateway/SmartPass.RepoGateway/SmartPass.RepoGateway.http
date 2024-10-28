@@ -1,6 +1,0 @@
-@SmartPass.RepoGateway_HostAddress = https://localhost:7226
-
-GET {{SmartPass.RepoGateway_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

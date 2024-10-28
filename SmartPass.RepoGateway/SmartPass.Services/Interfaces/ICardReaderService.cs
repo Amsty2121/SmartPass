@@ -1,13 +1,22 @@
 ﻿using LanguageExt;
 using LanguageExt.Common;
-using SmartPass.Repository.Models.Entities;
-using SmartPass.Services.Models.DTOs.Devices;
+using SmartPass.Services.Models.DTOs.CardReaders;
 
 namespace SmartPass.Services.Interfaces
 {
-    public interface ICardReaderService: IGenericCRUDService<CardReader, Guid, CardReaderDto>
+    public interface ICardReaderService
     {
-        Task<Option<CardReaderWithSession>> GetDeviceWithSessions(Guid id, CancellationToken ct = default);
-        Task<IEnumerable<CardReaderWithDeletedFlagDto>> GetDevicesWithDeletedFlag(CancellationToken ct = default);
+        Task<Option<CardReaderDto>> Get(Guid id, CancellationToken ct = default);
+        Task<IEnumerable<CardReaderDto>> GetAll(CancellationToken ct = default);
+
+
+        Task<Result<CardReaderDto>> Create(AddCardReaderDto addDto, CancellationToken ct = default);
+        Task<Result<CardReaderDto>> Update(UpdateCardReaderDto updateDto, CancellationToken ct = default);
+        Task<Result<CardReaderDto>> Delete(Guid id, CancellationToken ct = default);
+        Task<Result<CardReaderDto>> DeleteSoft(Guid id, CancellationToken ct = default);
+
+
+        //Task<Option<CardReaderWithSession>> GetDeviceWithSessions(Guid id, CancellationToken ct = default);
+        //Task<IEnumerable<CardReaderWithDeletedFlagDto>> GetDevicesWithDeletedFlag(CancellationToken ct = default);
     }
 }

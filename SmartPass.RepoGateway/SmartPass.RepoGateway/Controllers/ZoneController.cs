@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmartPass.Repository.Models.Entities;
 using SmartPass.Services.Interfaces;
+using SmartPass.Services.Models.DTOs.Zones;
 
 namespace SmartPass.RepoGateway.Controllers
 {
@@ -42,7 +43,7 @@ namespace SmartPass.RepoGateway.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Zone entity, CancellationToken ct = default)
+        public async Task<IActionResult> Create([FromBody] AddZoneDto entity, CancellationToken ct = default)
         {
             try
             {
@@ -93,7 +94,7 @@ namespace SmartPass.RepoGateway.Controllers
         }
 
         [HttpPatch]
-        public async Task<IActionResult> Update([FromBody] Zone entity, CancellationToken ct = default)
+        public async Task<IActionResult> Update([FromBody] UpdateZoneDto entity, CancellationToken ct = default)
         {
             try
             {

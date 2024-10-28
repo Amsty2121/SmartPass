@@ -1,0 +1,6 @@
+@SmartPass.Gateway_HostAddress = https://localhost:7226
+
+GET {{SmartPass.Gateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -7,8 +7,7 @@ using SmartPass.Services.Interfaces;
 using SmartPass.Services.Models.DTOs.Zones;
 using System.Data.SqlTypes;
 using System.Data;
-using SmartPass.Services.Models.DTOs.AccessLevels;
-using SmartPass.Repository.Models.Enums;
+
 
 namespace SmartPass.Services.Implementations
 {

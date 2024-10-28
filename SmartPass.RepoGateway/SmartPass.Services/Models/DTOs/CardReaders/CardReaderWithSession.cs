@@ -1,6 +1,6 @@
 ﻿using SmartPass.Services.Models.DTOs.Sessions;
 
-namespace SmartPass.Services.Models.DTOs.Devices
+namespace SmartPass.Services.Models.DTOs.CardReaders
 {
     public class CardReaderWithSession : CardReaderDto
     {

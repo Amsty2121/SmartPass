@@ -93,7 +93,7 @@ namespace SmartPass.RepoGateway.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPatch]
         public async Task<IActionResult> Update([FromBody] UpdateAccessLevelDto updateDto, CancellationToken ct = default)
         {
             try
