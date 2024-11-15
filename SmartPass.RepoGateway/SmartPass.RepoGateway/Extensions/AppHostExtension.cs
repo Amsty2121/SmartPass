@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using SmartPass.Repository.Models.Entities;
-using SmartPass.Repository.Seed;
 using SmartPass.Repository.Contexts;
 using Microsoft.EntityFrameworkCore;
+using SmartPass.Repository.Interfaces;
+using SmartPass.Services.Interfaces;
+using SmartPass.Services.Seed;
 
 namespace SmartPass.RepoGateway.Extensions
 {
@@ -15,15 +17,13 @@ namespace SmartPass.RepoGateway.Extensions
                 var services = scope.ServiceProvider;
                 try
                 {
-                    //var context = services.GetRequiredService<IdentityContext>();
-                    var context = services.GetRequiredService<Repository.Contexts.SmartPassContext>();
-                    var identityContext = services.GetRequiredService<UserManager<User>>();
-                    var roles = services.GetRequiredService<RoleManager<UserRole>>();
-
+                    var context = services.GetRequiredService<SmartPassContext>();
+                    var userService = services.GetRequiredService<IUserService>();
+                    var userRoleService = services.GetRequiredService<IUserRoleService>();
                     await context.Database.MigrateAsync();
 
-                    //await RoleSeeder.Seed(roles);
-                    await DataSeeder.Seed(identityContext);
+                    await RoleSeeder.Seed(context, userRoleService);
+                    await UserSeeder.Seed(context, userService);
                 }
                 catch (Exception ex)
                 {

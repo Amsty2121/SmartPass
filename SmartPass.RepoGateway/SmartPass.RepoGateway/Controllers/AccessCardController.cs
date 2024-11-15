@@ -108,5 +108,19 @@ namespace SmartPass.RepoGateway.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("Mobile/UserId/{id}")]
+        public async Task<IActionResult> GetAccessCardsByUserId([FromRoute] Guid id, CancellationToken ct = default)
+        {
+            try
+            {
+                var result = await AccessCardService.GetAllByUserId(id, ct);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -43,5 +43,11 @@ namespace SmartPass.Services.Implementations
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<AccessCardToMobileDto>> GetAllByUserId(Guid userId, CancellationToken ct = default)
+        {
+            var accessCards = await AccessCardRepo.GetWhereWithInclude(x => x.UserId == userId, ct, x => x.User, x => x.AccessLevel);
+            return !accessCards.Any() ? Enumerable.Empty<AccessCardToMobileDto>() : accessCards.Select(x => new AccessCardToMobileDto(x));
+        }
     }
 }

@@ -3,7 +3,7 @@
     public enum CardState
     {
         None,
-        Blocked = -1,
+        Blocked,
         NotAssigned,
         Active
     }

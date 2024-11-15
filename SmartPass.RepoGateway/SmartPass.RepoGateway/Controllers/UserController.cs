@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LanguageExt.Pipes;
+using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.AspNetCore.Mvc;
 using SmartPass.Services.Interfaces;
 using SmartPass.Services.Models.DTOs.Users;
+using SmartPass.Services.Models.Requests.Users;
+using SmartPass.Services.Models.Resposes;
 
 namespace SmartPass.RepoGateway.Controllers
 {
@@ -108,5 +112,41 @@ namespace SmartPass.RepoGateway.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("Mobile/Login")]
+        public async Task<IActionResult> Login([FromBody] UserLoginRequest request, CancellationToken ct = default)
+        {
+            try
+            {
+                var result = await UserService.Login(request, ct);
+                return result.Match<IActionResult>(
+                    Some: value => Ok(value),
+                    None: () => NotFound()
+                );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("Mobile/RefreshToken")]
+        public async Task<IActionResult> RefreshToken([FromQuery] string token, CancellationToken ct = default)
+        {
+            try
+            {
+                var result = await UserService.RefreshToken(token, ct);
+                
+                return result.Match<IActionResult>(
+                    Some: value => Ok(value),
+                    None: () => NotFound()
+                );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

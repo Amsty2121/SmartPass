@@ -10,6 +10,13 @@ namespace SmartPass.Repository.Models.Entities
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
+        [StringLength(80)]
+        public string PassKeys { get; set; }
+        
+        [Required]
+        public int PassIndex { get; set; }
+
         public Guid? UserId { get; set; }
 
         [Required]

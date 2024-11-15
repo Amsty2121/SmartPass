@@ -10,11 +10,11 @@ namespace SmartPass.Repository.Models.Entities
         public Guid Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(20)]
         public string UserName { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(44)]
         [MinLength(8)]
         public string Password { get; set; }
 
@@ -38,5 +38,6 @@ namespace SmartPass.Repository.Models.Entities
 
         public ICollection<AccessCard> AccessCards { get; set; }
         public ICollection<UserRole> UserRoles { get; set; }
+        public UserAuthData UserAuthData { get; set; }
     }
 }

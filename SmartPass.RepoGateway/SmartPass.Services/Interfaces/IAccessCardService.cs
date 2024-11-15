@@ -8,6 +8,7 @@ namespace SmartPass.Services.Interfaces
     {
         Task<Option<AccessCardDto>> Get(Guid id, CancellationToken ct = default);
         Task<IEnumerable<AccessCardDto>> GetAll(CancellationToken ct = default);
+        Task<IEnumerable<AccessCardToMobileDto>> GetAllByUserId(Guid userId, CancellationToken ct = default);
 
 
         Task<Result<AccessCardDto>> Create(AddAccessCardDto addDto, CancellationToken ct = default);

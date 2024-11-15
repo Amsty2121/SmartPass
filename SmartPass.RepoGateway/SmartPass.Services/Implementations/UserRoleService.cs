@@ -32,7 +32,7 @@ namespace SmartPass.Services.Implementations
         {
             var roles = await UserRoleRepo.GetWhere(r => r.Name.Equals(addDto.Name), ct);
 
-            if (!roles.Any())
+            if (roles.Any())
             { 
                 return new Result<UserRoleDto>(new DuplicateNameException($"DuplicateException: Insertion failed - Role {addDto.Name} already exists"));
             }

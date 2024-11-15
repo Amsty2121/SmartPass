@@ -53,6 +53,14 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                     b.Property<DateTime?>("LastUsingUtcDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("PassIndex")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("PassKeys")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("character varying(80)");
+
                     b.Property<DateTime?>("UpdateUtcDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -204,20 +212,56 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasMaxLength(44)
+                        .HasColumnType("character varying(44)");
 
                     b.Property<DateTime?>("UpdateUtcDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("SmartPass.Repository.Models.Entities.UserAuthData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreateUtcDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedUtcDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("ExpiresUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdateUtcDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("UserAuthDatas");
                 });
 
             modelBuilder.Entity("SmartPass.Repository.Models.Entities.UserRole", b =>
@@ -286,7 +330,7 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
 
                     b.HasIndex("AccessLevelId");
 
-                    b.ToTable("Zone");
+                    b.ToTable("Zones");
                 });
 
             modelBuilder.Entity("UserUserRole", b =>
@@ -349,6 +393,17 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                     b.Navigation("CardReader");
                 });
 
+            modelBuilder.Entity("SmartPass.Repository.Models.Entities.UserAuthData", b =>
+                {
+                    b.HasOne("SmartPass.Repository.Models.Entities.User", "User")
+                        .WithOne("UserAuthData")
+                        .HasForeignKey("SmartPass.Repository.Models.Entities.UserAuthData", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("SmartPass.Repository.Models.Entities.Zone", b =>
                 {
                     b.HasOne("SmartPass.Repository.Models.Entities.AccessLevel", "AccessLevel")
@@ -395,6 +450,9 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
             modelBuilder.Entity("SmartPass.Repository.Models.Entities.User", b =>
                 {
                     b.Navigation("AccessCards");
+
+                    b.Navigation("UserAuthData")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SmartPass.Repository.Models.Entities.Zone", b =>

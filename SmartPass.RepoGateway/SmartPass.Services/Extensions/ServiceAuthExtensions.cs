@@ -1,20 +1,17 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using SmartPass.RepoGateway.Configurations;
 using SmartPass.Repository.Models.Entities;
+using SmartPass.Services.AuthConfig;
 
-namespace SmartPass.RepoGateway.Extensions
+namespace SmartPass.Services.Extensions
 {
     public static class ServiceAuthExtensions
     {
-        public static void AddJwtAuth(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddJwtAuthentication(services.ConfigureAuthOptions(configuration));
-            services.AddJwtAuthorization();
-        }
-
-        private static void AddJwtAuthentication(this IServiceCollection services, AuthOptions authOptions)
+        public static void AddJwtAuthentication(this IServiceCollection services, AuthOptions authOptions)
         {
             services.AddAuthentication(options =>
             {
@@ -40,18 +37,22 @@ namespace SmartPass.RepoGateway.Extensions
             });
         }
 
-        private static void AddJwtAuthorization(this IServiceCollection services)
+        public static void AddJwtAuthorization(this IServiceCollection services)
         {
-            services.AddAuthorization(config =>
+            services.AddAuthorization(options =>
             {
-                config.DefaultPolicy = new AuthorizationPolicyBuilder()
+                options.DefaultPolicy = new AuthorizationPolicyBuilder()
                                         .RequireAuthenticatedUser()
                                         .RequireClaim(nameof(User.Id))
                                         .Build();
+
+                //options.AddPolicy(Policies.SupervizerPolicy, pb => pb.RequireAuthenticatedUser().RequireClaim("iss", Policies.SupervizerPolicy).Build());
+                
+                //options.AddPolicy(Policies.AdminService, pb => pb.RequireAuthenticatedUser().RequireClaim("iss", Policies.AdminService).Build());
             });
         }
 
-        private static AuthOptions ConfigureAuthOptions(this IServiceCollection services, IConfiguration configuration)
+        public static AuthOptions ConfigureAuthOptions(this IServiceCollection services, IConfiguration configuration)
         {
             var authOptionsConfigurationSection = configuration.GetSection("AuthOptions");
             services.Configure<AuthOptions>(authOptionsConfigurationSection);
@@ -59,5 +60,14 @@ namespace SmartPass.RepoGateway.Extensions
 
             return authOptions;
         }
+
+        /*public static SyncServiceSettings ConfigureSyncServiceOptions(this IServiceCollection services, IConfiguration configuration)
+        {
+            var syncServiceConfigurationSection = configuration.GetSection("SyncServiceRoute");
+            services.Configure<SyncServiceSettings>(syncServiceConfigurationSection);
+            var syncServiceSettings = syncServiceConfigurationSection.Get<SyncServiceSettings>();
+
+            return syncServiceSettings;
+        }*/
     }
 }

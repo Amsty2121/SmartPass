@@ -1,20 +1,41 @@
 ﻿using LanguageExt;
 using LanguageExt.Common;
+using LanguageExt.Pipes;
+using Microsoft.Extensions.Options;
 using SmartPass.Repository.Contexts;
 using SmartPass.Repository.Interfaces;
 using SmartPass.Repository.Models.Entities;
 using SmartPass.Repository.Models.Enums;
+using SmartPass.Services.AuthConfig;
 using SmartPass.Services.Interfaces;
 using SmartPass.Services.Models.DTOs.Users;
+using SmartPass.Services.Models.Requests.Users;
+using SmartPass.Services.Models.Resposes;
 using SmartPass.Services.Utility;
 using System.Data;
 using System.Data.SqlTypes;
+using System.Security.Cryptography;
 
 namespace SmartPass.Services.Implementations
 {
-    public class UserService(IGenericRepository<SmartPassContext, User> userRepository) : IUserService
+    public class UserService : IUserService
     {
-        private IGenericRepository<SmartPassContext, User> UserRepository { get; } = userRepository;
+        private IGenericRepository<SmartPassContext, User> UserRepository { get; }
+        public IGenericRepository<SmartPassContext, UserRole> UserRoleRepository { get; }
+        private IGenericRepository<SmartPassContext, UserAuthData> UserAuthDataRepository { get; }
+        private AuthOptions AuthOptions { get; }
+
+        public UserService(
+            IGenericRepository<SmartPassContext, User> userRepository,
+            IGenericRepository<SmartPassContext, UserRole> userRoleRepository,
+            IGenericRepository<SmartPassContext, UserAuthData> userAuthDataRepository,
+            IOptions<AuthOptions> authOptions)
+        {
+            UserRepository = userRepository;
+            UserRoleRepository = userRoleRepository;
+            UserAuthDataRepository = userAuthDataRepository;
+            AuthOptions = authOptions.Value;
+        }
 
         public async Task<Option<UserDto>> Get(Guid id, CancellationToken ct = default)
         {
@@ -30,12 +51,14 @@ namespace SmartPass.Services.Implementations
 
         public async Task<Result<UserDto>> Create(AddUserDto addDto, CancellationToken ct)
         {
-            var users = await UserRepository.GetWhere(r => r.UserName.Equals(addDto.UserName), ct);
+            var users = await UserRepository.GetWhere(x => x.UserName.Equals(addDto.UserName), ct);
 
-            if (!users.Any())
+            if (users.Any())
             {
                 return new Result<UserDto>(new DuplicateNameException($"DuplicateException: Insertion failed - User {addDto.UserName} already exists"));
             }
+
+            var roles = await UserRoleRepository.GetWhere(x => addDto.Roles.Contains(x.Name));
 
             var user = new User
             {
@@ -45,7 +68,8 @@ namespace SmartPass.Services.Implementations
                 Description = addDto.Description,
                 CreateUtcDate = DateTime.UtcNow,
                 IsDeleted = false,
-                Password = PasswordUtility.HashPassword(addDto.Password)
+                Password = PasswordUtility.HashPassword(addDto.Password),
+                UserRoles = roles.ToArray(),
             };
             var result = await UserRepository.Add(user, ct);
 
@@ -136,6 +160,66 @@ namespace SmartPass.Services.Implementations
             throw new NotImplementedException();
         }
 
+        public async Task<Option<UserLoginResponse>> Login(UserLoginRequest request, CancellationToken ct = default)
+        {
+            var user = (await UserRepository.GetWhereWithInclude(
+                x => x.UserName.Equals(request.Login) 
+                && x.Password.Equals(PasswordUtility.HashPassword(request.Password)),
+                ct, 
+                x => x.UserRoles)).SingleOrDefault();
 
+            if (user == null)
+                return null;
+
+            var authData = await UserAuthDataRepository.GetWhere(x => x.UserId == user.Id, ct);
+
+            var userAuthData = TokenGenerationUtility.GenerateRefreshToken(authData.FirstOrDefault(), user.Id);
+
+            if (authData.Any())
+            {
+                userAuthData.UpdateUtcDate = DateTime.UtcNow;
+                await UserAuthDataRepository.Update(userAuthData, ct);
+            }
+            else
+            {
+                userAuthData.CreateUtcDate = DateTime.UtcNow;
+                await UserAuthDataRepository.Add(userAuthData, ct);
+            }
+
+            return new UserLoginResponse
+            {
+                Token = TokenGenerationUtility.GenerateJwtToken(AuthOptions, user),
+                RefreshToken = userAuthData.RefreshToken,   
+            };
+        }
+
+        public async Task<Option<UserLoginResponse>> RefreshToken(string refreshToken, CancellationToken ct = default)
+        {
+            var authData = (await UserAuthDataRepository.GetWhere(x => x.RefreshToken.Equals(refreshToken), ct)).FirstOrDefault();
+
+            if ( authData is null )
+            {
+                return null;
+            }
+
+            var user = (await UserRepository.GetWhereWithInclude(
+                x => x.Id == authData.UserId,
+                ct,
+                x => x.UserRoles)).SingleOrDefault();
+
+            if (user == null)
+                return null;
+
+            var userAuthData = TokenGenerationUtility.GenerateRefreshToken(authData, user.Id);
+
+            userAuthData.UpdateUtcDate = DateTime.UtcNow;
+            await UserAuthDataRepository.Update(userAuthData, ct);
+
+            return new UserLoginResponse
+            {
+                Token = TokenGenerationUtility.GenerateJwtToken(AuthOptions, user),
+                RefreshToken = userAuthData.RefreshToken,
+            };
+        }
     }
 }
