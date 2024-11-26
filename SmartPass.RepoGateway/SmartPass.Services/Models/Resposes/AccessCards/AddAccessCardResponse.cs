@@ -1,11 +1,11 @@
 ﻿using SmartPass.Repository.Models.Entities;
 using SmartPass.Repository.Models.Enums;
 
-namespace SmartPass.Services.Models.DTOs.AccessCards
+namespace SmartPass.Services.Models.Resposes.AccessCards
 {
-    public class AccessCardDto
+    public class AddAccessCardResponse
     {
-        public AccessCardDto(AccessCard accessCard)
+        public AddAccessCardResponse(AccessCard accessCard)
         {
             Id = accessCard.Id;
             PassKeys = accessCard.PassKeys;

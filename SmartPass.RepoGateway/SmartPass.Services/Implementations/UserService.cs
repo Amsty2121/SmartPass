@@ -66,6 +66,7 @@ namespace SmartPass.Services.Implementations
                 UserName = addDto.UserName,
                 Department = addDto.Department,
                 Description = addDto.Description,
+                AccessCardsRowsStatus = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
                 CreateUtcDate = DateTime.UtcNow,
                 IsDeleted = false,
                 Password = PasswordUtility.HashPassword(addDto.Password),

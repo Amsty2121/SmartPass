@@ -95,6 +95,9 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("IsForSpecificZone")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -193,6 +196,10 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("AccessCardsRowsStatus")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("CreateUtcDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -204,8 +211,8 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");

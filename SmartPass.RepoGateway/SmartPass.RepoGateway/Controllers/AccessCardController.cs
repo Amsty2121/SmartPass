@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SmartPass.Services.Interfaces;
 using SmartPass.Services.Models.DTOs.AccessCards;
+using SmartPass.Services.Models.Requests.AccessCards;
 
 namespace SmartPass.RepoGateway.Controllers
 {
@@ -9,6 +11,8 @@ namespace SmartPass.RepoGateway.Controllers
     public class AccessCardController(IAccessCardService accessCardService) : ControllerBase
     {
         private IAccessCardService AccessCardService { get; } = accessCardService;
+
+        private Guid UserId => Guid.Parse(HttpContext.User.Claims.First(t => t.Type == nameof(SmartPass.Repository.Models.Entities.User.Id)).Value);
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] Guid id, CancellationToken ct = default)
@@ -42,7 +46,7 @@ namespace SmartPass.RepoGateway.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] AddAccessCardDto addDto, CancellationToken ct = default)
+        public async Task<IActionResult> Create([FromBody] AddAccessCardRequest addDto, CancellationToken ct = default)
         {
             try
             {
@@ -116,6 +120,24 @@ namespace SmartPass.RepoGateway.Controllers
             {
                 var result = await AccessCardService.GetAllByUserId(id, ct);
                 return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpGet("Mobile/MyCards")]
+        public async Task<IActionResult> GetAccessCardsByUserId(CancellationToken ct = default)
+        {
+            try
+            {
+                var result = await AccessCardService.GetAllByUserIdMobile(UserId, ct);
+                return result.Match<IActionResult>(
+                    Some: value => Ok(value),
+                    None: () => NotFound()
+                );
             }
             catch (Exception ex)
             {

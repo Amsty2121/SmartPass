@@ -8,11 +8,13 @@ namespace SmartPass.Services.Models.DTOs.AccessLevels
         {
             Id = accessLevel.Id;
             Name = accessLevel.Name;
+            IsForSpecificZone = accessLevel.IsForSpecificZone;
             Description = accessLevel.Description;
         }
 
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public bool IsForSpecificZone { get; set; }
         public string? Description { get; set; }
     }
 }

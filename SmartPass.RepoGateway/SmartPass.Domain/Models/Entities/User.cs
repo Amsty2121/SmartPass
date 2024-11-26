@@ -22,9 +22,11 @@ namespace SmartPass.Repository.Models.Entities
         public string? Department { get; set; }
 
         [MaxLength(500)]
+        [StringLength(64)]
         public string? Description { get; set; }
 
-
+        [Required]
+        public bool CardsSynchronized { get; set; }
 
         [Required]
         public DateTime CreateUtcDate { get; set; }

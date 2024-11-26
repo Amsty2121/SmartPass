@@ -6,7 +6,7 @@ namespace SmartPass.Services.Seed
 {
     public static class UserSeeder
     {
-        public static async Task Seed(SmartPassContext context, IUserService userService)
+        public static async Task Seed(SmartPassContext context, IUserService service)
         {
             if (context.Users.Any())
                 return;
@@ -34,7 +34,7 @@ namespace SmartPass.Services.Seed
 
             foreach (var user in users)
             {
-                await userService.Create(user);
+                await service.Create(user);
             }
         }
     }

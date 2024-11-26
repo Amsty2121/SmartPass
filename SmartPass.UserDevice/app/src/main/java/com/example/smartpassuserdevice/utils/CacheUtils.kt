@@ -4,6 +4,7 @@ import com.example.smartpassuserdevice.data.model.LoginResponse
 import com.google.gson.Gson
 import java.util.*
 import com.auth0.android.jwt.JWT
+import com.example.smartpassuserdevice.data.model.GetMyAccessCardsMobileResponse
 import com.example.smartpassuserdevice.data.model.UserInfo
 
 object CacheUtils {
@@ -13,6 +14,7 @@ object CacheUtils {
     private const val KEY_REFRESH_TOKEN = "refresh_token"
     private const val KEY_AUTH_KEY = "auth_key"
     private const val KEY_USER_INFO = "user_info"
+    private const val KEY_USER_CARDS = "user_cards"
 
     private fun getSharedPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
@@ -48,6 +50,16 @@ object CacheUtils {
         }
     }
 
+    fun saveUserCardsResponseToCache(context: Context, myCardsResponse: GetMyAccessCardsMobileResponse) {
+        val sharedPreferences = getSharedPreferences(context)
+
+        // Сохраняем данные в SharedPreferences
+        with(sharedPreferences.edit()) {
+            putString(KEY_USER_CARDS, Gson().toJson(myCardsResponse))
+            apply()
+        }
+    }
+
     // Получаем информацию о AuthKey из SharedPreferences
     /*fun getAuthKeyFromCache(context: Context): AuthKey? {
         val sharedPreferences = getSharedPreferences(context)
@@ -65,6 +77,17 @@ object CacheUtils {
         val userInfoJson = sharedPreferences.getString(KEY_USER_INFO, null)
         return if (userInfoJson != null) {
             Gson().fromJson(userInfoJson, UserInfo::class.java)
+        } else {
+            null
+        }
+    }
+
+    // Получаем токен из SharedPreferences
+    fun getUserCardsFromCache(context: Context): GetMyAccessCardsMobileResponse? {
+        val sharedPreferences = getSharedPreferences(context)
+        val userCardsJson = sharedPreferences.getString(KEY_USER_CARDS, null)
+        return if (userCardsJson != null) {
+            Gson().fromJson(userCardsJson, GetMyAccessCardsMobileResponse::class.java)
         } else {
             null
         }

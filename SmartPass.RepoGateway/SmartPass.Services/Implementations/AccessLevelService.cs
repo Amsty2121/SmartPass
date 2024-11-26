@@ -30,7 +30,7 @@ namespace SmartPass.Services.Implementations
         {
             var accessLevels = await AccessLevelRepo.GetWhere(r => r.Name.Equals(addDto.Name), ct);
 
-            if (!accessLevels.Any())
+            if (accessLevels.Any())
             {
                 return new Result<AccessLevelDto>(new DuplicateNameException($"DuplicateException: Insertion failed - AccessLevel {addDto.Name} already exists"));
             }
@@ -39,6 +39,7 @@ namespace SmartPass.Services.Implementations
             {
                 Id = Guid.NewGuid(),
                 Name = addDto.Name,
+                IsForSpecificZone = addDto.IsForSpecificZone,
                 Description = addDto.Description,
                 CreateUtcDate = DateTime.UtcNow,
                 IsDeleted = false

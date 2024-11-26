@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.smartpassuserdevice.data.repository.CardsRepository
 import com.example.smartpassuserdevice.data.repository.UserRepository
 import com.example.smartpassuserdevice.ui.navigation.NavigationGraph
 
@@ -24,8 +25,10 @@ import com.example.smartpassuserdevice.ui.navigation.NavigationGraph
 fun NavigationBarScreen(
     navController: NavHostController,
     viewModelStoreOwner: ViewModelStoreOwner,
-    repository: UserRepository
-) {
+    userRepository: UserRepository,
+    cardsRepository: CardsRepository,
+
+    ) {
     val secondaryNavController = rememberNavController()
     var selectedItemIndex by rememberSaveable { mutableIntStateOf(0) }
     var isMenuExpanded by rememberSaveable { mutableStateOf(false) }
@@ -44,7 +47,7 @@ fun NavigationBarScreen(
                 primaryNavController = navController,
                 secondaryNavController = secondaryNavController,
                 viewModelStoreOwner = viewModelStoreOwner,
-                repository = repository
+                repository = userRepository
             )
         },
         bottomBar = {
@@ -68,6 +71,9 @@ fun NavigationBarScreen(
             )
         }
     ) { padding ->
-        NavigationGraph(navController = secondaryNavController, modifier = Modifier.padding(padding))
+        NavigationGraph(navController = secondaryNavController,
+            modifier = Modifier.padding(padding),
+            cardsRepository = cardsRepository,
+            viewModelStoreOwner = viewModelStoreOwner)
     }
 }

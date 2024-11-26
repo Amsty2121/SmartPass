@@ -1,5 +1,6 @@
 using Application.IoC;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using SmartPass.RepoGateway.Constants;
 using SmartPass.RepoGateway.Extensions;
 using SmartPass.Repository.Contexts;
@@ -34,8 +35,45 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(swagger =>
+{
+    swagger.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "MainGateway",
+        Description = "MasterProj"
+    });
 
+    swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter your token in the text input below.",
+    });
+    swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+
+    //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    //var xmlFilePath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    //swagger.IncludeXmlComments(xmlFilePath);
+
+    //swagger.ExampleFilters();
+});
 var app = builder.Build();
 
 //Generate migrations

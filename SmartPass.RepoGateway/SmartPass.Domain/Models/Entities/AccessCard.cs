@@ -48,5 +48,6 @@ namespace SmartPass.Repository.Models.Entities
         public User User { get; set; }
         public AccessLevel AccessLevel { get; set; }
         public ICollection<Session> Sessions { get; set; }
+        
     }
 }

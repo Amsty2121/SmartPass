@@ -14,6 +14,9 @@ namespace SmartPass.Repository.Models.Entities
         [MaxLength(50)]
         public string Name { get; set; }
 
+        [Required]
+        public bool IsForSpecificZone { get; set; }
+
         [MaxLength(500)]
         public string? Description { get; set; }
 

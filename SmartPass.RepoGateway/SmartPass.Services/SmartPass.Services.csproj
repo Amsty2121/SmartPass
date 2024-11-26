@@ -22,7 +22,6 @@
     <Folder Include="Models\Requests\Sessions\" />
     <Folder Include="Models\Requests\UserRoles\" />
     <Folder Include="Models\Requests\Zones\" />
-    <Folder Include="Models\Resposes\AccessCards\" />
   </ItemGroup>
 
 </Project>

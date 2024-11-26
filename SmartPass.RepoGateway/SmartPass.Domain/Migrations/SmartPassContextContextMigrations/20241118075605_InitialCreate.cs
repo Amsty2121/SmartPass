@@ -17,6 +17,7 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    IsForSpecificZone = table.Column<bool>(type: "boolean", nullable: false),
                     Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
                     CreateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -53,7 +54,8 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                     UserName = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     Password = table.Column<string>(type: "character varying(44)", maxLength: 44, nullable: false),
                     Department = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+                    Description = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: true),
+                    AccessCardsRowsStatus = table.Column<string>(type: "text", nullable: false),
                     CreateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),

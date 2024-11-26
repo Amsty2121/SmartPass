@@ -20,10 +20,12 @@ namespace SmartPass.RepoGateway.Extensions
                     var context = services.GetRequiredService<SmartPassContext>();
                     var userService = services.GetRequiredService<IUserService>();
                     var userRoleService = services.GetRequiredService<IUserRoleService>();
+                    var accessLevelService = services.GetRequiredService<IAccessLevelService>();
                     await context.Database.MigrateAsync();
 
                     await RoleSeeder.Seed(context, userRoleService);
                     await UserSeeder.Seed(context, userService);
+                    await AccessLevelSeeder.Seed(context, accessLevelService);
                 }
                 catch (Exception ex)
                 {

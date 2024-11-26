@@ -16,7 +16,7 @@ namespace SmartPass.Services.Seed
 {
     public class RoleSeeder
     {
-        public static async Task Seed(SmartPassContext context, IUserRoleService userRoleService)
+        public static async Task Seed(SmartPassContext context, IUserRoleService service)
         {
             if (context.UserRoles.Any())
                 return;
@@ -37,7 +37,7 @@ namespace SmartPass.Services.Seed
 
             foreach (var role in roles)
             {
-                await userRoleService.Create(role);
+                await service.Create(role);
             }
         }
     }

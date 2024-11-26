@@ -12,7 +12,7 @@ using SmartPass.Repository.Contexts;
 namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
 {
     [DbContext(typeof(SmartPassContext))]
-    [Migration("20241113135738_InitialCreate")]
+    [Migration("20241118075605_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -96,6 +96,9 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                         .HasColumnType("character varying(500)");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsForSpecificZone")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Name")
@@ -196,6 +199,10 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("AccessCardsRowsStatus")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("CreateUtcDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -207,8 +214,8 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");

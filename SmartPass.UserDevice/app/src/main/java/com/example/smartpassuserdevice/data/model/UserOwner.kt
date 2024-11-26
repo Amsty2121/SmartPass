@@ -1,8 +1,9 @@
 package com.example.smartpassuserdevice.data.model
 
-import java.time.Instant
 import java.util.UUID
 
-data class GetAuthCardsRequest(
+data class UserOwner (
     val userId: UUID,
+    val userName: String,
+    val cardsSynchronized: Boolean,
 )
