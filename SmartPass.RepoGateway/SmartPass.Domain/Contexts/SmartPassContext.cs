@@ -14,7 +14,7 @@ namespace SmartPass.Repository.Contexts
         public DbSet<AccessLevel> AccessLevels { get; set; }
         public DbSet<AccessCard> AccessCards { get; set; }
         public DbSet<CardReader> CardReaders { get; set; }
-        public DbSet<Session> Sessions { get; set; }
+        public DbSet<AccessLog> AccessLog { get; set; }
         public DbSet<Zone> Zones { get; set; }
 
         /*protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -18,7 +18,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.smartpassuserdevice.data.model.LoginRequest
 import com.example.smartpassuserdevice.data.repository.UserRepository
-import com.example.smartpassuserdevice.viewmodel.LoginViewModel
+import com.example.smartpassuserdevice.viewmodel.UserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -36,7 +36,7 @@ import androidx.compose.ui.text.TextStyle
 fun LoginScreen(
     navController: NavHostController,
     viewModelStoreOwner: ViewModelStoreOwner,
-    repository: UserRepository
+    userRepository: UserRepository
 ) {
     val context = LocalContext.current
 
@@ -53,8 +53,8 @@ fun LoginScreen(
     var password by remember { mutableStateOf("") }
     var isError by remember { mutableStateOf(false) }
 
-    val factory = remember { LoginViewModel.LoginViewModelFactory(repository) }
-    val loginViewModel: LoginViewModel = viewModel(viewModelStoreOwner = viewModelStoreOwner, factory = factory)
+    val factory = remember { UserViewModel.LoginViewModelFactory(userRepository) }
+    val loginViewModel: UserViewModel = viewModel(viewModelStoreOwner = viewModelStoreOwner, factory = factory)
 
 
     Column(
@@ -218,7 +218,7 @@ private fun isValidPasswordCharacter(char: Char): Boolean {
 }
 
 private fun handleLogin(
-    loginViewModel: LoginViewModel,
+    loginViewModel: UserViewModel,
     navController: NavHostController,
     context: Context,
     username: String,

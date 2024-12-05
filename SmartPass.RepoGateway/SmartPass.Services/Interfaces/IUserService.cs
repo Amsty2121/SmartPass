@@ -4,7 +4,7 @@ using OneOf;
 using SmartPass.Repository.Models.Enums;
 using SmartPass.Services.Models.DTOs.Users;
 using SmartPass.Services.Models.Requests.Users;
-using SmartPass.Services.Models.Resposes;
+using SmartPass.Services.Models.Resposes.Users;
 
 namespace SmartPass.Services.Interfaces
 {
@@ -14,7 +14,7 @@ namespace SmartPass.Services.Interfaces
         Task<IEnumerable<UserDto>> GetAll(CancellationToken ct = default);
 
 
-        Task<Result<UserDto>> Create(AddUserDto addDto, CancellationToken ct = default);
+        Task<Result<UserDto>> Create(Models.Requests.Users.AddUserRequest request, CancellationToken ct = default);
         Task<Result<UserDto>> Update(UpdateUserDto updateDto, CancellationToken ct = default);
         Task<Result<UserDto>> Delete(Guid id, CancellationToken ct = default);
         Task<Result<UserDto>> DeleteSoft(Guid id, CancellationToken ct = default);
@@ -22,6 +22,7 @@ namespace SmartPass.Services.Interfaces
 
         Task<Option<UserLoginResponse>> Login(UserLoginRequest request, CancellationToken ct = default);
         Task<Option<UserLoginResponse>> RefreshToken(string refreshToken, CancellationToken ct = default);
+        Task<Option<IsUserSynchronizedResponse>> IsUserSynchronized(Guid id, CancellationToken ct = default);
 
         Task<ICollection<UserDto>> GetUsersByRole(RoleValue role, CancellationToken ct = default);
         Task<Option<UserWithCardsDto>> GetUserWithCards(Guid id, CancellationToken ct = default);

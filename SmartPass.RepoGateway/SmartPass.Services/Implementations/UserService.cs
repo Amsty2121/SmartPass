@@ -10,7 +10,7 @@ using SmartPass.Services.AuthConfig;
 using SmartPass.Services.Interfaces;
 using SmartPass.Services.Models.DTOs.Users;
 using SmartPass.Services.Models.Requests.Users;
-using SmartPass.Services.Models.Resposes;
+using SmartPass.Services.Models.Resposes.Users;
 using SmartPass.Services.Utility;
 using System.Data;
 using System.Data.SqlTypes;
@@ -49,32 +49,31 @@ namespace SmartPass.Services.Implementations
             return !users.Any() ? Enumerable.Empty<UserDto>() : users.Select(u => new UserDto(u));
         }
 
-        public async Task<Result<UserDto>> Create(AddUserDto addDto, CancellationToken ct)
+        public async Task<Result<UserDto>> Create(AddUserRequest request, CancellationToken ct)
         {
-            var users = await UserRepository.GetWhere(x => x.UserName.Equals(addDto.UserName), ct);
+            var users = await UserRepository.GetWhere(x => x.UserName.Equals(request.UserName), ct);
 
             if (users.Any())
             {
-                return new Result<UserDto>(new DuplicateNameException($"DuplicateException: Insertion failed - User {addDto.UserName} already exists"));
+                return new Result<UserDto>(new DuplicateNameException($"DuplicateException: Insertion failed - User {request.UserName} already exists"));
             }
 
-            var roles = await UserRoleRepository.GetWhere(x => addDto.Roles.Contains(x.Name));
+            var roles = await UserRoleRepository.GetWhere(x => request.Roles.Contains(x.Name));
 
             var user = new User
             {
                 Id = Guid.NewGuid(),
-                UserName = addDto.UserName,
-                Department = addDto.Department,
-                Description = addDto.Description,
-                AccessCardsRowsStatus = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+                UserName = request.UserName,
+                Department = request.Department,
+                Description = request.Description,
                 CreateUtcDate = DateTime.UtcNow,
                 IsDeleted = false,
-                Password = PasswordUtility.HashPassword(addDto.Password),
+                Password = PasswordUtility.HashPassword(request.Password),
                 UserRoles = roles.ToArray(),
             };
             var result = await UserRepository.Add(user, ct);
 
-            return result > 0 ? new UserDto(user) : new Result<UserDto>(new SqlTypeException($"DbException:Insertion failed - User {addDto.UserName}"));
+            return result > 0 ? new UserDto(user) : new Result<UserDto>(new SqlTypeException($"DbException:Insertion failed - User {request.UserName}"));
         }
 
         public async Task<Result<UserDto>> Delete(Guid id, CancellationToken ct = default)
@@ -221,6 +220,12 @@ namespace SmartPass.Services.Implementations
                 Token = TokenGenerationUtility.GenerateJwtToken(AuthOptions, user),
                 RefreshToken = userAuthData.RefreshToken,
             };
+        }
+
+        public async Task<Option<IsUserSynchronizedResponse>> IsUserSynchronized(Guid id, CancellationToken ct = default)
+        {
+            var user = await UserRepository.GetById(id, ct);
+            return user is null ? null : new IsUserSynchronizedResponse(user.IsSynchronized);
         }
     }
 }

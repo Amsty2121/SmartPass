@@ -20,7 +20,7 @@ import com.example.smartpassuserdevice.data.model.UserInfo
 import java.util.UUID
 
 @Composable
-fun ScreenUser(navController: NavHostController) {
+fun ScreenUser() {
     Log.d("NavigationProblems", "Zashli v User") // Лог при входе в ScreenUser
 
     // Извлекаем UserInfo из кэша

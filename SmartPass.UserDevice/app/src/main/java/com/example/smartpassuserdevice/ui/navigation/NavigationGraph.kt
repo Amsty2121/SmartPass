@@ -10,27 +10,27 @@ import androidx.navigation.compose.composable
 import com.example.smartpassuserdevice.data.repository.CardsRepository
 import com.example.smartpassuserdevice.ui.view.ScreenCards
 import com.example.smartpassuserdevice.ui.view.ScreenUser
+import android.content.Context
 
 @Composable
-fun NavigationGraph(navController: NavHostController,
-                    modifier: Modifier = Modifier,
-                    cardsRepository: CardsRepository,
-                    viewModelStoreOwner: ViewModelStoreOwner) {
-    Log.d("NavigationProblems", "Zashli v NavHost")
-
+fun NavigationGraph(
+    navController: NavHostController,
+    modifier: Modifier = Modifier,
+    cardsRepository: CardsRepository,
+    viewModelStoreOwner: ViewModelStoreOwner
+) {
     NavHost(
         navController = navController,
         startDestination = "User",
         modifier = modifier
     ) {
         composable("User") {
-            Log.d("NavigationProblems", "Navigating to User screen")
-            ScreenUser(navController)
+            ScreenUser()
         }
         composable("Cards") {
-            Log.d("NavigationProblems", "Navigating to Cards screen")
-            ScreenCards(navController, cardsRepository, viewModelStoreOwner)
+            ScreenCards(cardsRepository, viewModelStoreOwner)
         }
     }
 }
+
 

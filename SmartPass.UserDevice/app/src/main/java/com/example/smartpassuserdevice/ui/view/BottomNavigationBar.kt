@@ -27,7 +27,7 @@ fun BottomNavigationBar(
     selectedItemIndex: Int,
     onItemSelected: (Int) -> Unit
 ) {
-    Log.d("NavigationProblems", "Zashli v initializatiu BottomNavigationBar")
+    Log.d("NavigationProblems", "Zashli v BottomNavigationBar")
 
     val navItems = listOf(
         NavigationItem("User", Icons.Filled.AccountCircle),
@@ -57,6 +57,4 @@ fun BottomNavigationBar(
             )
         }
     }
-    Log.d("NavigationProblems", "Initializirovali BottomNavigationBar")
-
 }

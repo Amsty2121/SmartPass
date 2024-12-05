@@ -15,14 +15,14 @@ namespace SmartPass.Services.Models.Resposes.AccessCards
         public GetMyAccessCardsMobileResponse(IEnumerable<AccessCardDto> accessCards, User user)
         {
             AccessCards = accessCards;
-            User = new UserOwner(user.Id, user.UserName, user.CardsSynchronized);
+            UserInfo = new UserOwner(user.Id, user.UserName, user.Department);
         }
         
         public IEnumerable<AccessCardDto> AccessCards { get; set; }
-        public UserOwner User {  get; set; }
+        public UserOwner UserInfo {  get; set; }
     }
 
-    public record UserOwner(Guid UserId, string UserName, bool CardsSincronized) { }
+    public record UserOwner(Guid UserId, string UserName, string Department) { }
 
 
 

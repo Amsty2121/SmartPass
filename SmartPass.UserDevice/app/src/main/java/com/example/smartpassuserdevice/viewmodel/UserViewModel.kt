@@ -6,7 +6,8 @@ import com.example.smartpassuserdevice.data.model.LoginRequest
 import com.example.smartpassuserdevice.data.model.LoginResponse
 import com.example.smartpassuserdevice.data.repository.UserRepository
 
-class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {
+class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
+
     suspend fun login(loginRequest: LoginRequest): Result<LoginResponse?> {
         val response = userRepository.login(loginRequest)
 
@@ -27,14 +28,24 @@ class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {
         }
     }
 
+    suspend fun tokenVerify(token: String): Result<Boolean> {
+        val response = userRepository.tokenVerify(token)
+
+        return if (response.isSuccessful) {
+            Result.success(true) // Токен валиден
+        } else {
+            Result.success(false) // Токен невалиден (например, 401)
+        }
+    }
+
     class LoginViewModelFactory(
         private val repository: UserRepository
     ) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(UserViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return LoginViewModel(repository) as T
+                return UserViewModel(repository) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }

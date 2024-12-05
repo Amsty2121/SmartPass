@@ -68,7 +68,7 @@ class CardStateAdapter {
 
 class ApiServiceFactory {
 
-    private val BASE_URL = "http://10.0.2.2:5295/api/"
+    private val BASE_URL = "http://10.0.2.2:5295/api/MobileUser/"
 
     // Адаптер для Date
     private val moshi: Moshi by lazy {

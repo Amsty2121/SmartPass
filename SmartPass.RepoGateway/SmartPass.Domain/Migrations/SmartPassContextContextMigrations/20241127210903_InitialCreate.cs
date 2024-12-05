@@ -53,9 +53,10 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     UserName = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     Password = table.Column<string>(type: "character varying(44)", maxLength: 44, nullable: false),
-                    Department = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    Description = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: true),
-                    AccessCardsRowsStatus = table.Column<string>(type: "text", nullable: false),
+                    Department = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+                    IsSynchronized = table.Column<bool>(type: "boolean", nullable: false),
+                    LastSynchronizedUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     CreateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
@@ -72,7 +73,6 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    AccessLevelId = table.Column<Guid>(type: "uuid", nullable: false),
                     Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
                     CreateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -82,12 +82,6 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Zones", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Zones_AccessLevels_AccessLevelId",
-                        column: x => x.AccessLevelId,
-                        principalTable: "AccessLevels",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -97,12 +91,12 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     PassKeys = table.Column<string>(type: "character varying(80)", maxLength: 80, nullable: false),
                     PassIndex = table.Column<int>(type: "integer", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
                     CardType = table.Column<int>(type: "integer", nullable: false),
                     CardState = table.Column<int>(type: "integer", nullable: false),
-                    AccessLevelId = table.Column<Guid>(type: "uuid", nullable: false),
                     Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
                     LastUsingUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
+                    AccessLevelId = table.Column<Guid>(type: "uuid", nullable: false),
                     CreateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
@@ -173,13 +167,38 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AccessLevelZone",
+                columns: table => new
+                {
+                    AccessLevelsId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ZonesId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccessLevelZone", x => new { x.AccessLevelsId, x.ZonesId });
+                    table.ForeignKey(
+                        name: "FK_AccessLevelZone_AccessLevels_AccessLevelsId",
+                        column: x => x.AccessLevelsId,
+                        principalTable: "AccessLevels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AccessLevelZone_Zones_ZonesId",
+                        column: x => x.ZonesId,
+                        principalTable: "Zones",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CardReaders",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
-                    ZoneId = table.Column<Guid>(type: "uuid", nullable: true),
+                    ZoneId = table.Column<Guid>(type: "uuid", nullable: false),
+                    OppositeCardReaderId = table.Column<Guid>(type: "uuid", nullable: true),
                     LastUsingUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     CreateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -190,14 +209,20 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                 {
                     table.PrimaryKey("PK_CardReaders", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_CardReaders_CardReaders_OppositeCardReaderId",
+                        column: x => x.OppositeCardReaderId,
+                        principalTable: "CardReaders",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_CardReaders_Zones_ZoneId",
                         column: x => x.ZoneId,
                         principalTable: "Zones",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sessions",
+                name: "AccessLog",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -205,6 +230,8 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                     CardReaderId = table.Column<Guid>(type: "uuid", nullable: false),
                     SessionStatus = table.Column<int>(type: "integer", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
+                    StartUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    EndUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     CreateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
@@ -212,15 +239,15 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sessions", x => x.Id);
+                    table.PrimaryKey("PK_AccessLog", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Sessions_AccessCards_AccessCardId",
+                        name: "FK_AccessLog_AccessCards_AccessCardId",
                         column: x => x.AccessCardId,
                         principalTable: "AccessCards",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Sessions_CardReaders_CardReaderId",
+                        name: "FK_AccessLog_CardReaders_CardReaderId",
                         column: x => x.CardReaderId,
                         principalTable: "CardReaders",
                         principalColumn: "Id",
@@ -238,19 +265,41 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CardReaders_ZoneId",
-                table: "CardReaders",
-                column: "ZoneId");
+                name: "IX_AccessLevels_Name",
+                table: "AccessLevels",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sessions_AccessCardId",
-                table: "Sessions",
+                name: "IX_AccessLevelZone_ZonesId",
+                table: "AccessLevelZone",
+                column: "ZonesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccessLog_AccessCardId",
+                table: "AccessLog",
                 column: "AccessCardId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sessions_CardReaderId",
-                table: "Sessions",
+                name: "IX_AccessLog_CardReaderId",
+                table: "AccessLog",
                 column: "CardReaderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CardReaders_Name",
+                table: "CardReaders",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CardReaders_OppositeCardReaderId",
+                table: "CardReaders",
+                column: "OppositeCardReaderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CardReaders_ZoneId",
+                table: "CardReaders",
+                column: "ZoneId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserAuthDatas_UserId",
@@ -259,21 +308,37 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserRoles_Name",
+                table: "UserRoles",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_UserName",
+                table: "Users",
+                column: "UserName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserUserRole_UsersId",
                 table: "UserUserRole",
                 column: "UsersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Zones_AccessLevelId",
+                name: "IX_Zones_Name",
                 table: "Zones",
-                column: "AccessLevelId");
+                column: "Name",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Sessions");
+                name: "AccessLevelZone");
+
+            migrationBuilder.DropTable(
+                name: "AccessLog");
 
             migrationBuilder.DropTable(
                 name: "UserAuthDatas");
@@ -291,13 +356,13 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
+                name: "AccessLevels");
+
+            migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Zones");
-
-            migrationBuilder.DropTable(
-                name: "AccessLevels");
         }
     }
 }

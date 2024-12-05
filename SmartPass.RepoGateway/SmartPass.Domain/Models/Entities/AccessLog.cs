@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SmartPass.Repository.Models.Entities
 {
-    public class Session : IBaseEntity
+    public class AccessLog : IBaseEntity
     {
         [Required]
         [Key]
@@ -16,21 +16,21 @@ namespace SmartPass.Repository.Models.Entities
         [Required]
         public Guid CardReaderId { get; set; }
 
-
         [Required]
         public SessionStatus SessionStatus { get; set; }
+
         public string? Description { get; set; }
 
+        public DateTime? StartUtcDate { get; set; }
+        public DateTime? EndUtcDate { get; set; }
 
         [Required]
         public DateTime CreateUtcDate { get; set; }
         public DateTime? UpdateUtcDate { get; set; }
 
-
         [Required]
         public bool IsDeleted { get; set; }
         public DateTime? DeletedUtcDate { get; set; }
-
 
         public CardReader CardReader { get; set; }
         public AccessCard AccessCard { get; set; }

@@ -30,7 +30,7 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.smartpassuserdevice.data.repository.UserRepository
-import com.example.smartpassuserdevice.viewmodel.LoginViewModel
+import com.example.smartpassuserdevice.viewmodel.UserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,8 +50,8 @@ fun TopNavigationBar(
 ) {
     val context = LocalContext.current
     var isError by remember { mutableStateOf(false) }
-    val factory = remember { LoginViewModel.LoginViewModelFactory(repository) }
-    val loginViewModel: LoginViewModel = viewModel(viewModelStoreOwner = viewModelStoreOwner, factory = factory)
+    val factory = remember { UserViewModel.LoginViewModelFactory(repository) }
+    val loginViewModel: UserViewModel = viewModel(viewModelStoreOwner = viewModelStoreOwner, factory = factory)
 
     Log.d("NavigationProblems", "Zashli v TopNavigationBar")
     TopAppBar(
@@ -86,7 +86,7 @@ fun TopNavigationBar(
             DropdownMenu(
                 expanded = isMenuExpanded,
                 onDismissRequest = onMenuDismiss,
-                ) {
+            ) {
 
                 DropdownMenuItem(
                     onClick = {
@@ -94,7 +94,7 @@ fun TopNavigationBar(
                         handleTokenRefresh(loginViewModel, primaryNavController, secondaryNavController, context, { isError = true })
                         onMenuDismiss()
 
-                              },
+                    },
                     text = {
                         Row {
                             Icon(
@@ -116,7 +116,7 @@ fun TopNavigationBar(
                 DropdownMenuItem(
                     onClick = {
                         Toast.makeText(context, "Logout", Toast.LENGTH_SHORT).show()
-                        handleLogout(navController = primaryNavController, context = context)
+                        handleLogout(navController = primaryNavController, secondaryNavController, context = context)
                         onMenuDismiss()
                     },
                     text = {
@@ -143,9 +143,11 @@ fun TopNavigationBar(
 
 private fun handleLogout(
     navController: NavHostController,
+    secondaryNavController: NavHostController,
     context: Context
 ) {
     CacheUtils.clearCache(context)
+    secondaryNavController.popBackStack()
     Toast.makeText(context, "You have logged out", Toast.LENGTH_SHORT).show()
     navController.navigate("Login") {
         popUpTo("NavigationBar") { inclusive = true }
@@ -153,7 +155,7 @@ private fun handleLogout(
 }
 
 private fun handleTokenRefresh(
-    loginViewModel: LoginViewModel,
+    loginViewModel: UserViewModel,
     primaryNavController: NavHostController,
     secondaryNavController: NavHostController,
     context: Context,
@@ -179,9 +181,10 @@ private fun handleTokenRefresh(
                     Log.d("CacheUtils", "Saved Refresh Token: ${CacheUtils.getRefreshTokenDataFromCache(context)}")
                     Log.d("CacheUtils", "Saved User Data: ${CacheUtils.getUserInfoFromCache(context)}")
 
+                    secondaryNavController.popBackStack()
                     // Навигация на другую страницу
-                    secondaryNavController.navigate("User") {
-                        popUpTo("User") { inclusive = true }
+                    primaryNavController.navigate("NavigationBar") {
+                        //popUpTo("User") { inclusive = true }
                     }
                 } else {
                     // Если ответ пустой (ошибка обновления токена), вызываем onError
@@ -194,4 +197,3 @@ private fun handleTokenRefresh(
         }
     }
 }
-

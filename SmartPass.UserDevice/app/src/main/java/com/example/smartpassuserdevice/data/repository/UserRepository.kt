@@ -16,4 +16,9 @@ class UserRepository(private val apiServiceFactory: ApiServiceFactory) {
         val apiService = apiServiceFactory.getApiService()
         return apiService.refreshToken(token)
     }
+
+    suspend fun tokenVerify(token: String): Response<Unit> {
+        val apiService = apiServiceFactory.getApiService()
+        return apiService.tokenVerify(token)
+    }
 }

@@ -16,7 +16,8 @@ namespace SmartPass.Services.Utility
             {
                 new Claim(nameof(User.Id), user.Id.ToString()),
                 new Claim(nameof(User.UserName), user.UserName),
-                new Claim(nameof(User.Department), user.Department)
+                new Claim(nameof(User.Department), user.Department),
+                new Claim(nameof(User.IsSynchronized), user.IsSynchronized.ToString()),
             };
 
             foreach (var role in user.UserRoles)

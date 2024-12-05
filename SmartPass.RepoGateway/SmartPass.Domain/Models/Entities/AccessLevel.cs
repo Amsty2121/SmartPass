@@ -1,9 +1,10 @@
-﻿using SmartPass.Repository.Models.EntityInterfaces;
-using SmartPass.Repository.Models.Enums;
+﻿using Microsoft.EntityFrameworkCore;
+using SmartPass.Repository.Models.EntityInterfaces;
 using System.ComponentModel.DataAnnotations;
 
 namespace SmartPass.Repository.Models.Entities
 {
+    [Index(nameof(Name), IsUnique = true)]
     public class AccessLevel : IBaseEntity
     {
         [Required]

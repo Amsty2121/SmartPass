@@ -8,9 +8,9 @@ using SmartPass.Services.Models.DTOs.Sessions;
 
 namespace SmartPass.Services.Implementations
 {
-    public class SessionService(IGenericRepository<SmartPassContext, Session> sessionRepo) : ISessionService
+    public class SessionService(IGenericRepository<SmartPassContext, AccessLog> sessionRepo) : ISessionService
     {
-        public IGenericRepository<SmartPassContext, Session> SessionRepo { get; } = sessionRepo;
+        public IGenericRepository<SmartPassContext, AccessLog> SessionRepo { get; } = sessionRepo;
 
         public Task<Result<SessionDto>> Create(AddSessionDto addDto, CancellationToken ct = default)
         {

@@ -1,77 +1,71 @@
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.smartpassuserdevice.data.model.LoginResponse
-import com.google.gson.Gson
-import java.util.*
-import com.auth0.android.jwt.JWT
-import com.example.smartpassuserdevice.data.model.GetMyAccessCardsMobileResponse
+import com.example.smartpassuserdevice.data.model.GetMyAccessCardsMobileRsp
 import com.example.smartpassuserdevice.data.model.UserInfo
+import com.google.gson.Gson
+import com.auth0.android.jwt.JWT
+import com.example.smartpassuserdevice.data.model.AccessCard
+import java.util.*
 
 object CacheUtils {
 
+    // SharedPreferences keys
     private const val PREF_NAME = "auth_data"
     private const val KEY_TOKEN = "token"
     private const val KEY_REFRESH_TOKEN = "refresh_token"
-    private const val KEY_AUTH_KEY = "auth_key"
     private const val KEY_USER_INFO = "user_info"
     private const val KEY_USER_CARDS = "user_cards"
+    private const val KEY_SELECTED_CARD_INDEX = "selected_card_index"
+    private const val KEY_SELECTED_CARD = "selected_card"
 
+    // Helper function to get SharedPreferences
     private fun getSharedPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
     }
 
+    // Save login response to cache
     fun saveLoginResponseToCache(context: Context, loginResponse: LoginResponse) {
         val sharedPreferences = getSharedPreferences(context)
 
-        // Декодируем JWT и получаем информацию о пользователе
+        // Decode JWT token to extract user info
         val jwtToken = JWT(loginResponse.token)
         val refreshToken = loginResponse.refreshToken
-
-        /*val signInKeys = jwtRefreshToken.getClaim("SignInKeys").asString() ?: ""
-        val signInIndex = jwtRefreshToken.getClaim("SignInIndex").asInt() ?: 1
-        // Создание объекта AuthKey
-        val authKey = AuthKey(signInKeys = signInKeys, signInIndex = signInIndex)*/
 
         val idString = jwtToken.getClaim("Id").asString()
         val userName = jwtToken.getClaim("UserName").asString() ?: ""
         val department = jwtToken.getClaim("Department").asString() ?: ""
+
         val id = idString?.let { UUID.fromString(it) } ?: UUID.randomUUID()
 
-        // Создание объекта UserInfo
-        val userInfo = UserInfo(id = id, userName = userName, department = department)
+        // Create UserInfo object
+        val userInfo = UserInfo(
+            id = id,
+            userName = userName,
+            department = department
+            )
 
-        // Сохраняем данные в SharedPreferences
+        // Save data to SharedPreferences
         with(sharedPreferences.edit()) {
             putString(KEY_TOKEN, loginResponse.token)
             putString(KEY_REFRESH_TOKEN, refreshToken.toString())
-            //putString(KEY_AUTH_KEY, Gson().toJson(authKey))
             putString(KEY_USER_INFO, Gson().toJson(userInfo))
             apply()
         }
     }
 
-    fun saveUserCardsResponseToCache(context: Context, myCardsResponse: GetMyAccessCardsMobileResponse) {
+    // Save user cards response to cache
+    fun saveUserCardsResponseToCache(context: Context, myCardsResponse: GetMyAccessCardsMobileRsp) {
         val sharedPreferences = getSharedPreferences(context)
 
-        // Сохраняем данные в SharedPreferences
+        // Save user cards to SharedPreferences
         with(sharedPreferences.edit()) {
             putString(KEY_USER_CARDS, Gson().toJson(myCardsResponse))
             apply()
         }
     }
 
-    // Получаем информацию о AuthKey из SharedPreferences
-    /*fun getAuthKeyFromCache(context: Context): AuthKey? {
-        val sharedPreferences = getSharedPreferences(context)
-        val authKeyJson = sharedPreferences.getString(KEY_AUTH_KEY, null)
-        return if (authKeyJson != null) {
-            Gson().fromJson(authKeyJson, AuthKey::class.java)
-        } else {
-            null
-        }
-    }*/
-
-    // Получаем информацию о пользователе из SharedPreferences
+    // Get user info from cache
     fun getUserInfoFromCache(context: Context): UserInfo? {
         val sharedPreferences = getSharedPreferences(context)
         val userInfoJson = sharedPreferences.getString(KEY_USER_INFO, null)
@@ -82,48 +76,75 @@ object CacheUtils {
         }
     }
 
-    // Получаем токен из SharedPreferences
-    fun getUserCardsFromCache(context: Context): GetMyAccessCardsMobileResponse? {
+    // Get user cards from cache
+    fun getUserCardsFromCache(context: Context): GetMyAccessCardsMobileRsp? {
         val sharedPreferences = getSharedPreferences(context)
         val userCardsJson = sharedPreferences.getString(KEY_USER_CARDS, null)
         return if (userCardsJson != null) {
-            Gson().fromJson(userCardsJson, GetMyAccessCardsMobileResponse::class.java)
+            Gson().fromJson(userCardsJson, GetMyAccessCardsMobileRsp::class.java)
         } else {
             null
         }
     }
 
-    // Получаем токен из SharedPreferences
+    // Get token from cache
     fun getTokenFromCache(context: Context): String? {
         val sharedPreferences = getSharedPreferences(context)
         return sharedPreferences.getString(KEY_TOKEN, null)
     }
 
-    // Получаем refreshToken из SharedPreferences
+    // Get refresh token from cache
     fun getRefreshTokenDataFromCache(context: Context): String? {
         val sharedPreferences = getSharedPreferences(context)
         return sharedPreferences.getString(KEY_REFRESH_TOKEN, null)
     }
 
-    // Удаляем данные из SharedPreferences
-    fun clearCache(context: Context) {
+    // Save selected card index to cache
+    fun saveSelectedCardIndexToCache(context: Context, selectedIndex: Int) {
         val sharedPreferences = getSharedPreferences(context)
         with(sharedPreferences.edit()) {
-            if (sharedPreferences.contains(KEY_TOKEN)) {
-                remove(KEY_TOKEN)
-            }
-            if (sharedPreferences.contains(KEY_REFRESH_TOKEN)) {
-                remove(KEY_REFRESH_TOKEN)
-            }
-            if (sharedPreferences.contains(KEY_USER_INFO)) {
-                remove(KEY_USER_INFO)
-            }
-            // Можно добавить аналогичную проверку для других ключей, если нужно
-            // if (sharedPreferences.contains(KEY_AUTH_KEY)) {
-            //     remove(KEY_AUTH_KEY)
-            // }
+            putInt(KEY_SELECTED_CARD_INDEX, selectedIndex)
             apply()
         }
     }
 
+    // Get selected card index from cache
+    fun getSelectedCardIndexFromCache(context: Context): Int {
+        val sharedPreferences = getSharedPreferences(context)
+        return sharedPreferences.getInt(KEY_SELECTED_CARD_INDEX, 0)
+    }
+
+    // Save selected card to cache
+    fun saveSelectedCardToCache(context: Context, selectedCard: AccessCard) {
+        val sharedPreferences = getSharedPreferences(context)
+        with(sharedPreferences.edit()) {
+            putString(KEY_SELECTED_CARD, Gson().toJson(selectedCard))
+            apply()
+        }
+    }
+
+    // Get selected card from cache
+    fun getSelectedCardFromCache(context: Context): AccessCard? {
+        val sharedPreferences = getSharedPreferences(context)
+        val selectedCardJson = sharedPreferences.getString(KEY_SELECTED_CARD, null)
+        return if (selectedCardJson != null) {
+            Gson().fromJson(selectedCardJson, AccessCard::class.java)
+        } else {
+            null
+        }
+    }
+
+    // Clear all cached data
+    fun clearCache(context: Context) {
+        val sharedPreferences = getSharedPreferences(context)
+        with(sharedPreferences.edit()) {
+            // Remove all saved data
+            remove(KEY_TOKEN)
+            remove(KEY_REFRESH_TOKEN)
+            remove(KEY_USER_INFO)
+            remove(KEY_USER_CARDS)
+            putInt(KEY_SELECTED_CARD_INDEX, 0)
+            apply()
+        }
+    }
 }

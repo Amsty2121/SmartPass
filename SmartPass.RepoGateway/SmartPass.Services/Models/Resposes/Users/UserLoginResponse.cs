@@ -1,4 +1,4 @@
-﻿namespace SmartPass.Services.Models.Resposes
+﻿namespace SmartPass.Services.Models.Resposes.Users
 {
     public class UserLoginResponse
     {

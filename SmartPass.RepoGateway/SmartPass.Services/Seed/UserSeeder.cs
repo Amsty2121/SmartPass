@@ -1,6 +1,6 @@
 ﻿using SmartPass.Repository.Contexts;
 using SmartPass.Services.Interfaces;
-using SmartPass.Services.Models.DTOs.Users;
+using SmartPass.Services.Models.Requests.Users;
 
 namespace SmartPass.Services.Seed
 {
@@ -11,9 +11,9 @@ namespace SmartPass.Services.Seed
             if (context.Users.Any())
                 return;
 
-            var users = new List<AddUserDto>
+            var users = new List<AddUserRequest>
             {
-                new AddUserDto()
+                new AddUserRequest()
                 {
                     UserName = "global.admin",
                     Password = "Qwerty1!",
@@ -21,7 +21,7 @@ namespace SmartPass.Services.Seed
                     Description = "Default ADMIN USER created at first DB migration application",
                     Roles = new[] { "Admin", "DeviceUser" }
                 },
-                new AddUserDto()
+                new AddUserRequest()
                 {
                     UserName = "jora.cardan",
                     Password = "Qwerty1!",

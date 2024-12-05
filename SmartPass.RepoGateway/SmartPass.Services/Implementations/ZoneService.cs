@@ -29,7 +29,7 @@ namespace SmartPass.Services.Implementations
                 Id = Guid.NewGuid(),
                 Name = addDto.Name,
                 Description = addDto.Description,
-                AccessLevelId = addDto.AccessLevelId,
+                //AccessLevelId = addDto.AccessLevelId,
                 CreateUtcDate = DateTime.UtcNow,
                 IsDeleted = false
             };

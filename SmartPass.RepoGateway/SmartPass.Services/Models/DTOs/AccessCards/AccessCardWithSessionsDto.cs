@@ -9,6 +9,6 @@ namespace SmartPass.Services.Models.DTOs.AccessCards
             Sessions = accessCard.Sessions;
         }
 
-        public ICollection<Session> Sessions { get; set; }
+        public ICollection<AccessLog> Sessions { get; set; }
     }
 }

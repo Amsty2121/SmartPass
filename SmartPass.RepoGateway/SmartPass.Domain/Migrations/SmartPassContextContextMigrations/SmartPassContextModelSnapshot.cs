@@ -22,6 +22,21 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("AccessLevelZone", b =>
+                {
+                    b.Property<Guid>("AccessLevelsId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ZonesId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("AccessLevelsId", "ZonesId");
+
+                    b.HasIndex("ZonesId");
+
+                    b.ToTable("AccessLevelZone");
+                });
+
             modelBuilder.Entity("SmartPass.Repository.Models.Entities.AccessCard", b =>
                 {
                     b.Property<Guid>("Id")
@@ -108,7 +123,55 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("AccessLevels");
+                });
+
+            modelBuilder.Entity("SmartPass.Repository.Models.Entities.AccessLog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AccessCardId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CardReaderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreateUtcDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedUtcDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("EndUtcDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("SessionStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("StartUtcDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("UpdateUtcDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccessCardId");
+
+                    b.HasIndex("CardReaderId");
+
+                    b.ToTable("AccessLog");
                 });
 
             modelBuilder.Entity("SmartPass.Repository.Models.Entities.CardReader", b =>
@@ -138,56 +201,25 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
+                    b.Property<Guid?>("OppositeCardReaderId")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime?>("UpdateUtcDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid?>("ZoneId")
+                    b.Property<Guid>("ZoneId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.HasIndex("OppositeCardReaderId");
 
                     b.HasIndex("ZoneId");
 
                     b.ToTable("CardReaders");
-                });
-
-            modelBuilder.Entity("SmartPass.Repository.Models.Entities.Session", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("AccessCardId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("CardReaderId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreateUtcDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("DeletedUtcDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("SessionStatus")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("UpdateUtcDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccessCardId");
-
-                    b.HasIndex("CardReaderId");
-
-                    b.ToTable("Sessions");
                 });
 
             modelBuilder.Entity("SmartPass.Repository.Models.Entities.User", b =>
@@ -196,10 +228,6 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("AccessCardsRowsStatus")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("CreateUtcDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -207,15 +235,21 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Department")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(64)
-                        .HasColumnType("character varying(64)");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
+
+                    b.Property<bool>("IsSynchronized")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("LastSynchronizedUtcDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -231,6 +265,9 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                         .HasColumnType("character varying(20)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -300,6 +337,9 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("UserRoles");
                 });
 
@@ -307,9 +347,6 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("AccessLevelId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreateUtcDate")
@@ -335,7 +372,8 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccessLevelId");
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Zones");
                 });
@@ -355,6 +393,21 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                     b.ToTable("UserUserRole");
                 });
 
+            modelBuilder.Entity("AccessLevelZone", b =>
+                {
+                    b.HasOne("SmartPass.Repository.Models.Entities.AccessLevel", null)
+                        .WithMany()
+                        .HasForeignKey("AccessLevelsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartPass.Repository.Models.Entities.Zone", null)
+                        .WithMany()
+                        .HasForeignKey("ZonesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("SmartPass.Repository.Models.Entities.AccessCard", b =>
                 {
                     b.HasOne("SmartPass.Repository.Models.Entities.AccessLevel", "AccessLevel")
@@ -372,16 +425,7 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SmartPass.Repository.Models.Entities.CardReader", b =>
-                {
-                    b.HasOne("SmartPass.Repository.Models.Entities.Zone", "Zone")
-                        .WithMany("CardReaders")
-                        .HasForeignKey("ZoneId");
-
-                    b.Navigation("Zone");
-                });
-
-            modelBuilder.Entity("SmartPass.Repository.Models.Entities.Session", b =>
+            modelBuilder.Entity("SmartPass.Repository.Models.Entities.AccessLog", b =>
                 {
                     b.HasOne("SmartPass.Repository.Models.Entities.AccessCard", "AccessCard")
                         .WithMany("Sessions")
@@ -400,6 +444,23 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                     b.Navigation("CardReader");
                 });
 
+            modelBuilder.Entity("SmartPass.Repository.Models.Entities.CardReader", b =>
+                {
+                    b.HasOne("SmartPass.Repository.Models.Entities.CardReader", "OppositeCardReader")
+                        .WithMany()
+                        .HasForeignKey("OppositeCardReaderId");
+
+                    b.HasOne("SmartPass.Repository.Models.Entities.Zone", "Zone")
+                        .WithMany("CardReaders")
+                        .HasForeignKey("ZoneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OppositeCardReader");
+
+                    b.Navigation("Zone");
+                });
+
             modelBuilder.Entity("SmartPass.Repository.Models.Entities.UserAuthData", b =>
                 {
                     b.HasOne("SmartPass.Repository.Models.Entities.User", "User")
@@ -409,17 +470,6 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("SmartPass.Repository.Models.Entities.Zone", b =>
-                {
-                    b.HasOne("SmartPass.Repository.Models.Entities.AccessLevel", "AccessLevel")
-                        .WithMany("Zones")
-                        .HasForeignKey("AccessLevelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AccessLevel");
                 });
 
             modelBuilder.Entity("UserUserRole", b =>
@@ -445,8 +495,6 @@ namespace SmartPass.Repository.Migrations.SmartPassContextContextMigrations
             modelBuilder.Entity("SmartPass.Repository.Models.Entities.AccessLevel", b =>
                 {
                     b.Navigation("AccessCards");
-
-                    b.Navigation("Zones");
                 });
 
             modelBuilder.Entity("SmartPass.Repository.Models.Entities.CardReader", b =>

@@ -1,6 +1,7 @@
 package com.example.smartpassuserdevice.ui.view
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -27,11 +28,10 @@ fun NavigationBarScreen(
     viewModelStoreOwner: ViewModelStoreOwner,
     userRepository: UserRepository,
     cardsRepository: CardsRepository,
-
-    ) {
+) {
     val secondaryNavController = rememberNavController()
     var selectedItemIndex by rememberSaveable { mutableIntStateOf(0) }
-    var isMenuExpanded by rememberSaveable { mutableStateOf(false) }
+    val isMenuExpanded = rememberSaveable { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -41,9 +41,9 @@ fun NavigationBarScreen(
                     1 -> "Cards"
                     else -> "User"
                 },
-                isMenuExpanded = isMenuExpanded,
-                onMenuToggle = { isMenuExpanded = !isMenuExpanded },
-                onMenuDismiss = { isMenuExpanded = false },
+                isMenuExpanded = isMenuExpanded.value,
+                onMenuToggle = { isMenuExpanded.value = !isMenuExpanded.value },
+                onMenuDismiss = { isMenuExpanded.value = false },
                 primaryNavController = navController,
                 secondaryNavController = secondaryNavController,
                 viewModelStoreOwner = viewModelStoreOwner,
@@ -54,26 +54,35 @@ fun NavigationBarScreen(
             BottomNavigationBar(
                 selectedItemIndex = selectedItemIndex,
                 onItemSelected = { index ->
-                    selectedItemIndex = index
                     val route = when (index) {
                         0 -> "User"
                         1 -> "Cards"
                         else -> "User"
                     }
-                    secondaryNavController.navigate(route) {
-                        popUpTo(secondaryNavController.graph.findStartDestination().id) {
-                            saveState = true
-                        }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
+                    navigateIfNeeded(secondaryNavController, route)
+                    selectedItemIndex = index
                 }
             )
         }
     ) { padding ->
-        NavigationGraph(navController = secondaryNavController,
+        NavigationGraph(
+            navController = secondaryNavController,
             modifier = Modifier.padding(padding),
             cardsRepository = cardsRepository,
-            viewModelStoreOwner = viewModelStoreOwner)
+            viewModelStoreOwner = viewModelStoreOwner,
+        )
+    }
+}
+
+private fun navigateIfNeeded(navController: NavHostController, targetRoute: String) {
+    val currentRoute = navController.currentBackStackEntry?.destination?.route
+    if (currentRoute != targetRoute) {
+        navController.navigate(targetRoute) {
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
+            launchSingleTop = true
+            restoreState = true
+        }
     }
 }

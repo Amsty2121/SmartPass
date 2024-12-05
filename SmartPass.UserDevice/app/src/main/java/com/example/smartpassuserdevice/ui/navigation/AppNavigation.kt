@@ -9,12 +9,28 @@ import com.example.smartpassuserdevice.ui.view.LoginScreen
 import com.example.smartpassuserdevice.ui.view.NavigationBarScreen
 
 @Composable
-fun AppNavigation(viewModelStoreOwner: ViewModelStoreOwner, userRepository: UserRepository, cardsRepository: CardsRepository) {
+fun AppNavigation(
+    viewModelStoreOwner: ViewModelStoreOwner,
+    userRepository: UserRepository,
+    cardsRepository: CardsRepository
+) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "Login") {
-        composable("Login") { LoginScreen(navController, viewModelStoreOwner, userRepository) }
-        composable("NavigationBar") { NavigationBarScreen(navController, viewModelStoreOwner, userRepository, cardsRepository) }
+        composable("Login") {
+            LoginScreen(
+                navController = navController,
+                userRepository = userRepository,
+                viewModelStoreOwner = viewModelStoreOwner
+            )
+        }
+        composable("NavigationBar") {
+            NavigationBarScreen(
+                navController = navController,
+                viewModelStoreOwner = viewModelStoreOwner,
+                userRepository = userRepository,
+                cardsRepository = cardsRepository
+            )
+        }
     }
 }
-

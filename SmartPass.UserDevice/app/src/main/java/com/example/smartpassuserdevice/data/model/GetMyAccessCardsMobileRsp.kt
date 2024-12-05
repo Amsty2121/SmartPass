@@ -1,6 +1,6 @@
 package com.example.smartpassuserdevice.data.model
 
-data class GetMyAccessCardsMobileResponse (
-    val user : UserOwner,
+data class GetMyAccessCardsMobileRsp (
+    val userInfo : UserInfo,
     val accessCards: List<AccessCard>
 )

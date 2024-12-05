@@ -1,8 +1,10 @@
-﻿using SmartPass.Repository.Models.EntityInterfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SmartPass.Repository.Models.EntityInterfaces;
 using System.ComponentModel.DataAnnotations;
 
 namespace SmartPass.Repository.Models.Entities
 {
+    [Index(nameof(Name), IsUnique = true)]
     public class Zone : IBaseEntity
     {
         [Required]
@@ -12,9 +14,6 @@ namespace SmartPass.Repository.Models.Entities
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
-
-        [Required]
-        public Guid AccessLevelId { get; set; }
 
         [MaxLength(500)]
         public string? Description { get; set; }
@@ -29,7 +28,7 @@ namespace SmartPass.Repository.Models.Entities
         public DateTime? DeletedUtcDate { get; set; }
 
 
-        public AccessLevel AccessLevel { get; set; }
+        public ICollection<AccessLevel> AccessLevels { get; set; }
         public ICollection<CardReader> CardReaders { get; set; }
     }
 }

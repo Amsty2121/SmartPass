@@ -1,8 +1,10 @@
-﻿using SmartPass.Repository.Models.EntityInterfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SmartPass.Repository.Models.EntityInterfaces;
 using System.ComponentModel.DataAnnotations;
 
 namespace SmartPass.Repository.Models.Entities
 {
+    [Index(nameof(UserName), IsUnique = true)]
     public class User : IBaseEntity
     {
         [Required]
@@ -14,19 +16,19 @@ namespace SmartPass.Repository.Models.Entities
         public string UserName { get; set; }
 
         [Required]
-        [MaxLength(44)]
-        [MinLength(8)]
+        [StringLength(44)]
         public string Password { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(50)]
         public string? Department { get; set; }
 
         [MaxLength(500)]
-        [StringLength(64)]
         public string? Description { get; set; }
 
         [Required]
-        public bool CardsSynchronized { get; set; }
+        public bool IsSynchronized { get; set; }
+
+        public DateTime? LastSynchronizedUtcDate { get; set; }
 
         [Required]
         public DateTime CreateUtcDate { get; set; }

@@ -1,8 +1,11 @@
-﻿using SmartPass.Repository.Models.EntityInterfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SmartPass.Repository.Models.EntityInterfaces;
 using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace SmartPass.Repository.Models.Entities
 {
+    [Index(nameof(UserId), IsUnique = true)]
     public class UserAuthData : IBaseEntity
     {
         [Required]

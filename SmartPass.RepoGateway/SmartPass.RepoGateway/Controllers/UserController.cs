@@ -46,7 +46,7 @@ namespace SmartPass.RepoGateway.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] AddUserDto addDto, CancellationToken ct = default)
+        public async Task<IActionResult> Create([FromBody] AddUserRequest addDto, CancellationToken ct = default)
         {
             try
             {
@@ -112,41 +112,5 @@ namespace SmartPass.RepoGateway.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-        [HttpPost("Mobile/Login")]
-        public async Task<IActionResult> Login([FromBody] UserLoginRequest request, CancellationToken ct = default)
-        {
-            try
-            {
-                var result = await UserService.Login(request, ct);
-                return result.Match<IActionResult>(
-                    Some: value => Ok(value),
-                    None: () => NotFound()
-                );
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpPost("Mobile/RefreshToken")]
-        public async Task<IActionResult> RefreshToken([FromQuery] string token, CancellationToken ct = default)
-        {
-            try
-            {
-                var result = await UserService.RefreshToken(token, ct);
-                
-                return result.Match<IActionResult>(
-                    Some: value => Ok(value),
-                    None: () => NotFound()
-                );
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
     }
 }

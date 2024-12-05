@@ -3,11 +3,8 @@ package com.example.smartpassuserdevice.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.getValue
 import com.example.smartpassuserdevice.data.model.AccessCard
-import com.example.smartpassuserdevice.data.model.GetMyAccessCardsMobileResponse
+import com.example.smartpassuserdevice.data.model.GetMyAccessCardsMobileRsp
 import com.example.smartpassuserdevice.data.repository.CardsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,7 +17,7 @@ class MyCardsViewModel(private val cardsRepository: CardsRepository) : ViewModel
     val cardsState: StateFlow<List<AccessCard>> = _cardsState
 
     // Функция для получения карт
-    suspend fun getMyCards(token: String): Result<GetMyAccessCardsMobileResponse?> {
+    suspend fun getMyCards(token: String): Result<GetMyAccessCardsMobileRsp?> {
         val response = cardsRepository.getMyCards(token)
 
         return if (response.isSuccessful) {
